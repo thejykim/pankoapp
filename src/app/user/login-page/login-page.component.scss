@@ -4,6 +4,11 @@ button {
     }
 }
 
+
+:host {
+    text-align: center;
+}
+
 .logout {
     padding-top: 5em;
 }

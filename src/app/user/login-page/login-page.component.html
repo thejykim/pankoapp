@@ -11,6 +11,12 @@
         <button mat-raised-button appFacebookSignin disabled>
             <img src="/assets/facebook-logo.png"> Login with Facebook
         </button>
+
+        <br><br>
+
+        <h5>-OR-</h5>
+
+        <app-email-login></app-email-login>
     </div>
     
     <div *ngIf="afAuth.authState | async as user">
