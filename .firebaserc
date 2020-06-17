@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "kanban-37f41": {
+      "hosting": {
+        "kanban": [
+          "kanban-37f41"
+        ]
+      }
+    }
+  }
+}
