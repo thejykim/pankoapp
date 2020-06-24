@@ -41,7 +41,7 @@ export class BoardService {
   }
 
   // get user's boards
-  async getUserBoards() {
+  getUserBoards() {
     return this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {

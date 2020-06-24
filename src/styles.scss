@@ -4,9 +4,9 @@
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
 
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 $custom-typography: mat-typography-config(
-    $font-family: 'Josefin Sans'
+    $font-family: 'Inter'
 );
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -71,11 +71,24 @@ $kanban-theme: mat-dark-theme($kanban-primary, $kanban-accent, $kanban-warn);
 
 /* You can add global styles to this file, and also import other style files */
 
+$primary: map-get($map: $kanban-theme, $key: primary);
+
+:root {
+    --color-primary: #{mat-color($kanban-theme)};
+    --color-accent: #{mat-color($kanban-accent)};
+    --color-warn: #{mat-color($kanban-warn)};
+}
+
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Quicksand', sans-serif; }
+
+body { margin: 0; font-family: 'Inter', sans-serif; }
+
 main {
     padding: 3rem;
-    text-align: center;
+}
+
+.logo {
+    font-weight: 700;
 }
 
 .highlight {

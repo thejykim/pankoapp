@@ -19,7 +19,7 @@
   
       <!-- TOOLBAR -->
   
-      <mat-toolbar>
+      <mat-toolbar color="primary">
         <button 
           type="button"
           aria-label="Toggle sidenav"
@@ -30,13 +30,12 @@
   
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <span class="logo" routerLink="/">🔥 Kanban</span>
+        <span class="logo" routerLink="/">Panko</span>
   
         <span class="fill-space"></span>
         
         <div *ngIf="!(isHandset$ | async)">
           <a mat-button routerLink="/kanban">🍱 Kanban</a>
-          <a mat-button routerLink="/customers">⚡ SSR</a>
           <a mat-button routerLink="/login">🔑 Login</a>
         </div>
       </mat-toolbar>
