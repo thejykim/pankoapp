@@ -12,8 +12,9 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class BoardComponent {
   @Input() board;
+  display: Task[];
 
-  constructor(private boardService: BoardService, public dialog: MatDialog) { }
+  constructor(private boardService: BoardService, public dialog: MatDialog) {  }
 
   taskDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.board.tasks, event.previousIndex, event.currentIndex);
@@ -47,6 +48,10 @@ export class BoardComponent {
 
   handleDelete() {
     this.boardService.deleteBoard(this.board.id);
+  }
+
+  parseNewLine(parse) {
+    return parse.replace(/(?:\r\n|\r|\n)/g, '<br>');
   }
 
 }
