@@ -12,14 +12,13 @@
         <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
         <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
         <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Kanban Demo</a>
-        <a mat-list-item routerLink="/customers" (click)="drawer.close()">SSR Demo</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
   
       <!-- TOOLBAR -->
   
-      <mat-toolbar color="primary">
+      <mat-toolbar class="fullview">
         <button 
           type="button"
           aria-label="Toggle sidenav"
@@ -35,9 +34,21 @@
         <span class="fill-space"></span>
         
         <div *ngIf="!(isHandset$ | async)">
-          <a mat-button routerLink="/kanban">🍱 Kanban</a>
-          <a mat-button routerLink="/login">🔑 Login</a>
+          <a mat-button routerLink="/kanban">📝 Kanban</a>
+          <a *ngIf="!(afAuth.authState | async)" mat-button routerLink="/login">🔑 Login</a>
+          <a *ngIf="afAuth.authState | async" mat-button [matMenuTriggerFor]="menu">🧑 Profile</a>
         </div>
+        
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item routerLink="/stats">
+            <i>📊</i>
+            <span>My Insights</span>
+          </a>
+          <a mat-menu-item (click)="afAuth.signOut()">
+            <i>⛔️</i>
+            <span>Logout</span>
+          </a>
+        </mat-menu>
       </mat-toolbar>
   
       <ng-content></ng-content>

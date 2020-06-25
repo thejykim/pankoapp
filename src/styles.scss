@@ -1,12 +1,11 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Plus imports for other components in your app.
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 $custom-typography: mat-typography-config(
-    $font-family: 'Inter'
+  $font-family: "Inter",
 );
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -17,46 +16,42 @@ $custom-typography: mat-typography-config(
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-/* For use in src/lib/core/theming/_palette.scss */
 
-/* For use in src/lib/core/theming/_palette.scss */
-$custom-teal: (
-    50 : #eceff1,
-    100 : #cfd8dc,
-    200 : #b0bec5,
-    300 : #90a4ae,
-    400 : #78919c,
-    500 : #607d8b,
-    600 : #587583,
-    700 : #4e6a78,
-    800 : #44606e,
-    900 : #334d5b,
-    A100 : #abe1ff,
-    A200 : #78ceff,
-    A400 : #45bcff,
-    A700 : #2bb3ff,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #000000,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
+$custom-primary: (
+  50 : #e3f5fd,
+  100 : #bae7fb,
+  200 : #8cd7f9,
+  300 : #5ec7f6,
+  400 : #3cbbf4,
+  500 : #19aff2,
+  600 : #16a8f0,
+  700 : #129fee,
+  800 : #0e96ec,
+  900 : #0886e8,
+  A100 : #ffffff,
+  A200 : #deefff,
+  A400 : #abd7ff,
+  A700 : #91caff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
 );
 
-
-
-$kanban-primary: mat-palette($custom-teal);
-$kanban-accent: mat-palette($custom-teal, A200, A100, A400);
+$kanban-primary: mat-palette($custom-primary);
+$kanban-accent: mat-palette($custom-primary);
 
 // The warn palette is optional (defaults to red).
 $kanban-warn: mat-palette($mat-red);
@@ -71,26 +66,48 @@ $kanban-theme: mat-dark-theme($kanban-primary, $kanban-accent, $kanban-warn);
 
 /* You can add global styles to this file, and also import other style files */
 
-$primary: map-get($map: $kanban-theme, $key: primary);
+$primary: map-get(
+  $map: $kanban-theme,
+  $key: primary,
+);
 
 :root {
-    --color-primary: #{mat-color($kanban-theme)};
-    --color-accent: #{mat-color($kanban-accent)};
-    --color-warn: #{mat-color($kanban-warn)};
+  --color-primary: #{mat-color($kanban-theme)};
+  --color-accent: #{mat-color($kanban-accent)};
+  --color-warn: #{mat-color($kanban-warn)};
 }
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 
-body { margin: 0; font-family: 'Inter', sans-serif; }
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
 
 main {
-    padding: 3rem;
+  padding: 3rem;
 }
 
 .logo {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .highlight {
-    background-color: #FFEB3B;
+  background-color: #ffeb3b;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card {
+  border-radius: 10px !important;
+}
+
+mat-dialog-container {
+  border-radius: 10px !important;
 }

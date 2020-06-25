@@ -1,13 +1,10 @@
 <mat-card class="outer-card" color="primary">
     <mat-card-header>
-        <ng-content></ng-content>
-
         <mat-card-title>
             {{ board.title }}
         </mat-card-title>
-        <mat-card-subtitle>
-            {{ board.id }}
-        </mat-card-subtitle>
+
+        <ng-content></ng-content>
     </mat-card-header>
 
     <div class="tasks" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="taskDrop($event)">

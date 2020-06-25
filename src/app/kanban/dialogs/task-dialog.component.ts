@@ -11,6 +11,7 @@ import { BoardService } from '../board.service';
         <textarea
           placeholder="Task description"
           matInput
+          cdkTextareaAutosize
           [(ngModel)]="data.task.description"
         ></textarea>
       </mat-form-field>

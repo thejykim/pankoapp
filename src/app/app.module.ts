@@ -15,7 +15,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,7 @@
 
 .sidenav {
   width: 200px;
-  font-family: sofia-pro;
+  font-family: Inter;
 }
 
 .sidenav .mat-toolbar {
@@ -42,4 +42,9 @@ i {
   width: 1.75em;
   border-radius: 50%;
   margin: 0 10px 5px;
+}
+
+.fullview {
+  padding-left: 7rem;
+  padding-right: 7rem;
 }
