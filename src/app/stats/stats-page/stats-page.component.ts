@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Subscription } from 'rxjs';
+import { StatsService } from '../stats.service';
+import { UserStats } from '../user-stats.model';
 
 @Component({
   selector: 'app-stats-page',
@@ -8,11 +11,19 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class StatsPageComponent implements OnInit {
   user;
+  userStats: UserStats;
+  sub: Subscription;
+  isLoaded: boolean;
+  hasStats: boolean;
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth, public statsService: StatsService) { }
 
   ngOnInit(): void {
+    this.isLoaded = false;
     this.getUser();
+    this.sub = this.statsService.getUserStats().subscribe((userStats) => (this.isLoaded = true,
+      this.userStats = userStats,
+      this.hasStats = (userStats !== [])));
   }
 
   async getUser() {

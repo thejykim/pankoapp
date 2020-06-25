@@ -33,7 +33,7 @@ export class BoardComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (result.isNew) {
-          this.boardService.editTasks(this.board.id, [
+          this.boardService.createTask(this.board.id, [
             ...this.board.tasks,
             result.task
           ]);

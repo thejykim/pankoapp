@@ -1,11 +1,23 @@
 <main class="centered">
-    <mat-card class="header-img">
-        <img mat-card-image src="https://media.tenor.com/images/18a92c66af69580997b965ed719cfb89/tenor.gif">
-    </mat-card>
+    <div *ngIf="!isLoaded" style="align-items: center;">
+        <mat-spinner color="primary"></mat-spinner>
+    </div>
+
+    <div style="text-align: center;" *ngIf="isLoaded">
+        <!--
+        <mat-card class="header-img">
+            <img mat-card-image src="https://media.tenor.com/images/18a92c66af69580997b965ed719cfb89/tenor.gif">
+        </mat-card>
+        -->
+
+        <div *ngIf="hasStats">
+            <p>{{ getFirstName() }}, you've created {{ userStats.boardsCreated }} boards so far.</p>
+        </div>
+
+        <div *ngIf="!hasStats">
+            <h2>Not enough data yet.</h2>
+    
+            <p>Keep using your boards normally, {{ getFirstName() }}, and we'll fill this up soon enough.</p>
+        </div>
+    </div>
 </main>
-
-<div style="text-align: center;">
-    <h2>Not enough data yet.</h2>
-
-    <p>Keep using your boards normally, {{ getFirstName() }}, and we'll fill this up soon enough.</p>
-</div>

@@ -15,17 +15,28 @@ export class BoardService {
   // create a new board
   async createBoard(data: Board) {
     const user = await this.afAuth.currentUser;
+    const increment = firebase.firestore.FieldValue.increment(1);
 
     return this.db.collection('boards').add({
       ...data,
       uid: user.uid,
-      tasks: [{ description: 'Hello!', label: 'yellow' }]
-    });
+      tasks: [{ description: 'Click to edit me!', label: 'yellow' }]
+    }).then(doc =>
+      this.db.collection('userStats').doc(user.uid).set({boardsCreated: increment}, {merge: true}));
   }
 
   // delete a board
   async deleteBoard(boardID: string) {
     return this.db.collection('boards').doc(boardID).delete();
+  }
+
+  // create card
+  async createTask(boardID: string, tasks: Task[]) {
+    const user = await this.afAuth.currentUser;
+    const increment = firebase.firestore.FieldValue.increment(1);
+
+    this.editTasks(boardID, tasks).then(doc =>
+      this.db.collection('userStats').doc(user.uid).set({tasksCreated: increment}, {merge: true}));
   }
 
   // edit cards on board
@@ -35,9 +46,13 @@ export class BoardService {
 
   // remove card on board
   async removeTask(boardID: string, task: Task) {
+    const user = await this.afAuth.currentUser;
+    const increment = firebase.firestore.FieldValue.increment(1);
+
     return this.db.collection('boards').doc(boardID).update({
       tasks: firebase.firestore.FieldValue.arrayRemove(task)
-    });
+    }).then(doc =>
+      this.db.collection('userStats').doc(user.uid).set({tasksCompleted: increment}, {merge: true}));
   }
 
   // get user's boards
