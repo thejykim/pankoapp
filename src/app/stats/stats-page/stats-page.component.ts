@@ -19,11 +19,12 @@ export class StatsPageComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth, public statsService: StatsService) { }
 
   ngOnInit(): void {
+    this.hasStats = false;
     this.isLoaded = false;
     this.getUser();
     this.sub = this.statsService.getUserStats().subscribe((userStats) => (this.isLoaded = true,
       this.userStats = userStats,
-      this.hasStats = (userStats !== [])));
+      this.hasStats = !(userStats in window)));
   }
 
   async getUser() {
