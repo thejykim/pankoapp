@@ -57,7 +57,7 @@ $kanban-accent: mat-palette($custom-primary);
 $kanban-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$kanban-theme: mat-dark-theme($kanban-primary, $kanban-accent, $kanban-warn);
+$kanban-theme: mat-light-theme($kanban-primary, $kanban-accent, $kanban-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -95,19 +95,36 @@ main {
   font-weight: 700;
 }
 
-.highlight {
-  background-color: #ffeb3b;
-}
-
 .centered {
   display: flex;
   justify-content: center;
 }
 
-mat-card {
+mat-card.shadow {
   border-radius: 10px !important;
+  -webkit-box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.5) !important;
 }
 
 mat-dialog-container {
   border-radius: 10px !important;
+}
+
+.animated-gradient {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

@@ -5,6 +5,11 @@
   padding: 2rem 1rem;
 }
 
+.light {
+  background: rgb(219,219,219);
+  background: linear-gradient(80deg, rgba(219,219,219,1) 0%, rgba(238,238,238,1) 74%);
+}
+
 .inner-card {
   margin: 1rem 0;
   cursor: pointer;
@@ -24,24 +29,22 @@
 
 .blue {
   background: #71deff;
-  color: black;
 }
 
 .green {
   background: #36e9b6;
-  color: black;
 }
 
 .yellow {
   background: #ffcf44;
-  color: black;
 }
 .purple {
-
+  color: white;
   background: #b15cff;
 }
 
 .red {
+  color: white;
   background: #e74a4a;
 }
 

@@ -3,18 +3,24 @@
         <mat-spinner color="primary"></mat-spinner>
     </div>
 
-    <div style="text-align: center;" *ngIf="isLoaded">
-        <!--
-        <mat-card class="header-img">
-            <img mat-card-image src="https://media.tenor.com/images/18a92c66af69580997b965ed719cfb89/tenor.gif">
+    <div *ngIf="isLoaded">
+
+        <mat-card class="intro-card shadow animated-gradient" style="color: white;">
+            <mat-card-content><h1>Your insights</h1></mat-card-content>
         </mat-card>
-        -->
 
         <div *ngIf="hasStats">
-            <p>{{ getFirstName() }}, you've created {{ userStats.boardsCreated }} boards so far.</p>
+            <mat-card class="info-card">
+                <mat-card-title>
+                    <h2>Basic</h2>
+                </mat-card-title>
+                <mat-card-content>
+                    <p>{{ getFirstName() }}, you've created {{ userStats.boardsCreated }} boards and {{ userStats.tasksCreated }} tasks so far.</p>
+                </mat-card-content>
+            </mat-card>
         </div>
 
-        <div *ngIf="!hasStats">
+        <div style="text-align: center;" *ngIf="!hasStats">
             <h2>Not enough data yet.</h2>
     
             <p>Keep using your boards normally, {{ getFirstName() }}, and we'll fill this up soon enough.</p>

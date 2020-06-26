@@ -22,7 +22,7 @@ export class BoardService {
       uid: user.uid,
       tasks: [{ description: 'Click to edit me!', label: 'yellow' }]
     }).then(doc =>
-      this.db.collection('userStats').doc(user.uid).set({boardsCreated: increment}, {merge: true}));
+      this.db.collection('userStats').doc(user.uid).set({boardsCreated: increment, tasksCreated: increment}, {merge: true}));
   }
 
   // delete a board

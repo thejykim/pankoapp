@@ -1,14 +1,26 @@
-.header-img {
-    max-width: 60%;
-    max-height: fit-content;
-}
-
 .mat-card-image {
-    margin-bottom: -20px !important;
+    margin-bottom: -22px !important;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
 }
 
 h2 {
     font-weight: 600;
+}
+
+.intro-card {
+    text-align: center;
+    margin:auto;
+    padding: 2rem 10rem;
+    margin-bottom: 3rem;
+    max-width: 20rem;
+}
+
+.info-card {
+    width: 60vw;
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-weight: 700;
 }
