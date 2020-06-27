@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 
 @Directive({
-  selector: '[appGoogleSignin]'
+  selector: '[appFacebookSignin]'
 })
 export class FacebookSigninDirective {
 

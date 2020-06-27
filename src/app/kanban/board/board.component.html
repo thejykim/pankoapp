@@ -1,4 +1,4 @@
-<mat-card class="outer-card light" color="primary">
+<mat-card class="outer-card dark" color="primary">
     <mat-card-header>
         <mat-card-title>
             {{ board.title }}
@@ -12,7 +12,7 @@
             <mat-card [ngClass]="task.label" [innerHTML]="parseNewLine(task.description)"></mat-card>
         </div>
 
-        <button mat-stroked-button (click)="openDialog()">
+        <button mat-stroked-button style="color:white" (click)="openDialog()">
             <mat-icon>add</mat-icon>
         </button>
 

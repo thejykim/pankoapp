@@ -4,6 +4,8 @@ import { StatsPageComponent } from './stats-page/stats-page.component';
 import { StatsRoutingModule } from './stats-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
@@ -12,7 +14,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CommonModule,
     StatsRoutingModule,
     SharedModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatChipsModule
   ]
 })
 export class StatsModule { }

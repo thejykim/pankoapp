@@ -10,8 +10,10 @@
       <mat-nav-list>
        
         <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
-        <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
-        <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Kanban Demo</a>
+        <a *ngIf="!(afAuth.authState | async)" mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
+        <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Kanban</a>
+        <a *ngIf="afAuth.authState | async" mat-list-item routerLink="/stats" (click)="drawer.close()">My Insights</a>
+        <a *ngIf="afAuth.authState | async" mat-list-item routerLink="/login" (click)="afAuth.signOut()">Logout</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

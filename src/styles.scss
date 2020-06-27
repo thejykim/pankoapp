@@ -57,7 +57,7 @@ $kanban-accent: mat-palette($custom-primary);
 $kanban-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$kanban-theme: mat-light-theme($kanban-primary, $kanban-accent, $kanban-warn);
+$kanban-theme: mat-dark-theme($kanban-primary, $kanban-accent, $kanban-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -127,4 +127,9 @@ mat-dialog-container {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+.pro-gradient {
+  background: rgb(231,60,179);
+  background: linear-gradient(320deg, rgba(231,60,179,1) 0%, rgba(238,121,82,1) 67%);
 }

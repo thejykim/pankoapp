@@ -9,15 +9,53 @@
             <mat-card-content><h1>Your insights</h1></mat-card-content>
         </mat-card>
 
-        <div *ngIf="hasStats">
-            <mat-card class="info-card">
-                <mat-card-title>
-                    <h2>Basic</h2>
-                </mat-card-title>
-                <mat-card-content>
-                    <p>{{ getFirstName() }}, you've created {{ userStats.boardsCreated }} boards and {{ userStats.tasksCreated }} tasks so far.</p>
-                </mat-card-content>
-            </mat-card>
+        <div style="width: 60vw" *ngIf="hasStats">
+            <mat-tab-group dynamicHeight mat-align-tabs="center">
+                <mat-tab label="Basic">
+                    <mat-card class="info-card">
+                        <mat-card-title>
+                            <h2>Basic</h2>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <mat-card *ngIf="userStats.boardsCreated < 50" class="warning-card">
+                                <mat-card-content>It seems that you haven't handled many tasks yet. That's okay, but the data you see below may not be very accurate.</mat-card-content>
+                            </mat-card>
+                            
+                            <p>{{ getFirstName() }}, you've created {{ userStats.boardsCreated }} boards and {{ userStats.tasksCreated }} tasks so far.</p>
+                            <p>Of those tasks, you've completed {{ userStats.tasksCompleted }}. That's a {{ 100*(userStats.tasksCompleted / userStats.tasksCreated) }}% task completion rate - nice work!</p>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-tab>
+
+                <mat-tab label="Habits">
+                    <mat-card class="info-card">
+                        <mat-card-title>
+                            <h2>This feature isn't available yet.</h2>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <p>Once it is, you'll be able to analyze your personal trends of delegating yourself tasks, when you're most efficient, and more.</p>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-tab>
+
+                <mat-tab label="Third">
+                    <ng-template mat-tab-label>
+                        Sentiment Analysis 
+                        <mat-chip-list aria-label="Pro feature">
+                            <mat-chip class="pro-gradient" (selectable)="false">Pro</mat-chip>
+                        </mat-chip-list>
+                    </ng-template>
+
+                    <mat-card class="info-card" style="text-align: center;">
+                        <mat-card-title>
+                            <h2>This feature isn't available yet.</h2>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <p>Once it is, you'll be able to see your own tone and sentiment tendencies, as well as personalized feedback.</p>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-tab>
+            </mat-tab-group>
         </div>
 
         <div style="text-align: center;" *ngIf="!hasStats">

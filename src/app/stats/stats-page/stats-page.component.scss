@@ -17,10 +17,30 @@ h2 {
 }
 
 .info-card {
+    text-align: center;
     width: 60vw;
-    margin-bottom: 3rem;
+    margin-top: 1rem;
+}
+
+.warning-card {
+    background-color: #ffb347;;
+    margin: 1rem 5% 1rem 5%;
+    text-align: center;
 }
 
 h1 {
     font-weight: 700;
+}
+
+mat-tab {
+    padding: 2rem;
+}
+
+mat-chip-list {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+mat-chip {
+    font-size: 12px !important;
 }
