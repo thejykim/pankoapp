@@ -13,8 +13,11 @@ import { MatDialog } from '@angular/material/dialog';
 export class BoardComponent {
   @Input() board;
   display: Task[];
+  editingTitle: boolean;
+  boardField: HTMLInputElement;
+  @Input() boardTitle: string;
 
-  constructor(private boardService: BoardService, public dialog: MatDialog) {  }
+  constructor(private boardService: BoardService, public dialog: MatDialog) { }
 
   taskDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.board.tasks, event.previousIndex, event.currentIndex);
@@ -52,6 +55,15 @@ export class BoardComponent {
 
   parseNewLine(parse) {
     return parse.replace(/(?:\r\n|\r|\n)/g, '<br>');
+  }
+
+  toggleTitle() {
+    this.editingTitle = true;
+  }
+
+  editTitle() {
+    this.boardService.editBoardTitle(this.board.id, this.boardTitle);
+    this.editingTitle = false;
   }
 
 }

@@ -55,6 +55,15 @@ export class BoardService {
       this.db.collection('userStats').doc(user.uid).set({tasksCompleted: increment}, {merge: true}));
   }
 
+  // edit board title
+  async editBoardTitle(boardID: string, newTitle: string) {
+    const user = await this.afAuth.currentUser;
+
+    return this.db.collection('boards').doc(boardID).update({
+      title: newTitle
+    });
+  }
+
   // get user's boards
   getUserBoards() {
     return this.afAuth.authState.pipe(

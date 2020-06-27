@@ -13,6 +13,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TaskDialogComponent } from './dialogs/task-dialog.component';
 import { BoardListComponent } from './board-list/board-list.component';
 import { DeleteButtonComponent } from './buttons/delete-button/delete-button.component';
+import { FocusInputDirective } from './directives/focus-input.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DeleteButtonComponent } from './buttons/delete-button/delete-button.com
     BoardComponent,
     BoardDialogComponent,
     TaskDialogComponent,
-    DeleteButtonComponent
+    DeleteButtonComponent,
+    FocusInputDirective
   ],
   imports: [
     CommonModule,

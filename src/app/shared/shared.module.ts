@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule } from "@angular/forms";
 
 const components = [ShellComponent];
 
@@ -30,7 +31,8 @@ const modules = [
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  FormsModule
 ];
 
 @NgModule({

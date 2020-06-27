@@ -1,6 +1,9 @@
-<mat-card class="outer-card dark" color="primary">
+<mat-card class="outer-card light">
     <mat-card-header>
-        <mat-card-title>
+        <form *ngIf="editingTitle">
+            <input name="boardTitle" [(ngModel)]="boardTitle" class="boardTitle" (focusout)="editTitle()" appFocusInput>
+        </form>
+        <mat-card-title *ngIf="!editingTitle" class="light" (click)="toggleTitle()">
             {{ board.title }}
         </mat-card-title>
 
@@ -12,7 +15,7 @@
             <mat-card [ngClass]="task.label" [innerHTML]="parseNewLine(task.description)"></mat-card>
         </div>
 
-        <button mat-stroked-button style="color:white" (click)="openDialog()">
+        <button mat-stroked-button (click)="openDialog()">
             <mat-icon>add</mat-icon>
         </button>
 
