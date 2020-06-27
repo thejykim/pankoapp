@@ -15,6 +15,7 @@ export class BoardComponent {
   display: Task[];
   editingTitle: boolean;
   boardField: HTMLInputElement;
+  oldBoardTitle: string;
   @Input() boardTitle: string;
 
   constructor(private boardService: BoardService, public dialog: MatDialog) { }
@@ -58,11 +59,15 @@ export class BoardComponent {
   }
 
   toggleTitle() {
+    this.oldBoardTitle = this.boardTitle;
     this.editingTitle = true;
   }
 
   editTitle() {
-    this.boardService.editBoardTitle(this.board.id, this.boardTitle);
+    if (this.oldBoardTitle !== this.boardTitle) {
+      this.boardService.editBoardTitle(this.board.id, this.boardTitle);
+    }
+
     this.editingTitle = false;
   }
 

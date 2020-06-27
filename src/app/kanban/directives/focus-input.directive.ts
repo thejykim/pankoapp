@@ -10,7 +10,9 @@ export class FocusInputDirective {
   ngOnInit(): void {
     const input: HTMLInputElement = this.el.nativeElement as HTMLInputElement;
     input.focus();
-    input.select();
+    setTimeout(() => {
+      input.select();
+    }, 10);
   }
 
 }
