@@ -12,10 +12,9 @@ import { MatChipsModule } from '@angular/material/chips';
 // Stats and graphs
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PieTasksComponent } from './graphs/pie-tasks/pie-tasks.component';
-import { PieChartZeroPaddingDirective } from './graphs/pie-chart-zero-padding.directive';
 
 @NgModule({
-  declarations: [StatsPageComponent, PieTasksComponent, PieChartZeroPaddingDirective],
+  declarations: [StatsPageComponent, PieTasksComponent],
   imports: [
     CommonModule,
     StatsRoutingModule,
