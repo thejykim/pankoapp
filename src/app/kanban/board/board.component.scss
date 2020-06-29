@@ -1,7 +1,7 @@
 .outer-card {
   margin: 1rem;
-  min-width: 300px;
-  max-width: 300px;
+  min-width: 325px;
+  max-width: 325px;
   padding: 2rem 1rem;
 }
 
@@ -23,27 +23,30 @@ mat-card.dark {
 
 mat-card-title {
   padding: 0.25rem;
+  font-weight: 400;
   border-radius: 6px;
   border: 1px transparent solid;
-  color: black;
 }
 
 mat-card-title:hover {
-  border: 1px rgb(201, 201, 201) solid;
+  border: 1px rgb(161, 161, 161) solid;
 }
 
 .boardTitle {
   padding: 0.25rem;
   border-radius: 6px;
-  border: 1px rgb(161, 161, 161) solid;
+  border: 1px rgb(201, 201, 201) solid;
   outline: none;
   margin-bottom: 12px;
   height: 1em;
   font: inherit;
   background-color: transparent;
-  font-weight: 600;
   font-size: 20px;
-  color: black;
+  color: white;
+}
+
+.fill-space {
+  flex: 1 1 auto;
 }
 
 .inner-card {
@@ -92,6 +95,6 @@ mat-card-title:hover {
   text-decoration: line-through;
 }
 
-.mat-card-title {
-  font-weight: 600
+mat-checkbox {
+  cursor: default;
 }

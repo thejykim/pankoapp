@@ -20,7 +20,7 @@ export class BoardService {
     return this.db.collection('boards').add({
       ...data,
       uid: user.uid,
-      tasks: [{ description: 'Click to edit me!', label: 'yellow' }]
+      tasks: [{ description: 'Click to edit me!', label: 'yellow', isDone: false }]
     }).then(doc =>
       this.db.collection('userStats').doc(user.uid).set({boardsCreated: increment, tasksCreated: increment}, {merge: true}));
   }
@@ -44,6 +44,16 @@ export class BoardService {
     return this.db.collection('boards').doc(boardID).update({ tasks });
   }
 
+  // toggle card completion
+  async toggleTask(boardID: string, tasks: Task[], completed: boolean) {
+    const user = await this.afAuth.currentUser;
+    const increment = firebase.firestore.FieldValue.increment(completed ? 1 : -1);
+
+    this.editTasks(boardID, tasks).then(doc => {
+      this.db.collection('userStats').doc(user.uid).set({tasksCompleted: increment}, {merge: true});
+    })
+  }
+
   // remove card on board
   async removeTask(boardID: string, task: Task) {
     const user = await this.afAuth.currentUser;
@@ -51,8 +61,7 @@ export class BoardService {
 
     return this.db.collection('boards').doc(boardID).update({
       tasks: firebase.firestore.FieldValue.arrayRemove(task)
-    }).then(doc =>
-      this.db.collection('userStats').doc(user.uid).set({tasksCompleted: increment}, {merge: true}));
+    });
   }
 
   // edit board title

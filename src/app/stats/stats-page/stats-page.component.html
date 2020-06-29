@@ -5,30 +5,44 @@
 
     <div *ngIf="isLoaded">
 
-        <mat-card class="intro-card shadow animated-gradient" style="color: white;">
+        <mat-card class="intro-card curved shadow animated-gradient">
             <mat-card-content><h1>Your insights</h1></mat-card-content>
         </mat-card>
 
         <div style="width: 60vw" *ngIf="hasStats">
             <mat-tab-group dynamicHeight mat-align-tabs="center">
-                <mat-tab label="Basic">
+                <mat-tab label="📈 Basic">
                     <mat-card class="info-card">
                         <mat-card-title>
                             <h2>Basic</h2>
                         </mat-card-title>
                         <mat-card-content>
-                            <mat-card *ngIf="userStats.boardsCreated < 50" class="warning-card">
-                                <mat-card-content>It seems that you haven't handled many tasks yet. That's okay, but the data you see below may not be very accurate.</mat-card-content>
+                            <mat-card *ngIf="userStats.boardsCreated < 50" class="warning-card curved">
+                                <mat-card-content>It looks like you haven't handled many tasks yet. That's okay, but the data you see below may not be very accurate. 👍</mat-card-content>
                             </mat-card>
                             
-                            <p>{{ getFirstName() }}, you've created {{ userStats.boardsCreated }} boards and {{ userStats.tasksCreated }} tasks so far.</p>
-                            <p>Of those tasks, you've completed {{ userStats.tasksCompleted }}. That's a {{ 100*(userStats.tasksCompleted / userStats.tasksCreated) }}% task completion rate - nice work!</p>
+                            <mat-card class="graph-card shadow">
+                                <h2>Tasks Breakdown</h2>
+                                <div class="graph">
+                                    <app-pie-tasks [single]="taskStats"></app-pie-tasks>
+                                </div>
+                                <p>{{ taskCompletedComment() }}</p>
+                            </mat-card>
                         </mat-card-content>
                     </mat-card>
                 </mat-tab>
 
-                <mat-tab label="Habits">
-                    <mat-card class="info-card">
+                <mat-tab label="📆 Habits">
+                    <mat-card class="info-card" *ngIf="isNewAccount()">
+                        <mat-card-title>
+                            <h2>We need more time!</h2>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <p>A week after you register, you'll be able to analyze your personal trends of delegating yourself tasks, when you're most efficient, and more. Until then, use the app as you normally would.</p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="info-card" *ngIf="!isNewAccount()">
                         <mat-card-title>
                             <h2>This feature isn't available yet.</h2>
                         </mat-card-title>
@@ -40,9 +54,9 @@
 
                 <mat-tab label="Third">
                     <ng-template mat-tab-label>
-                        Sentiment Analysis 
-                        <mat-chip-list aria-label="Pro feature">
-                            <mat-chip class="pro-gradient" (selectable)="false">Pro</mat-chip>
+                        😇 Sentiment Analysis 
+                        <mat-chip-list aria-label="Beta feature">
+                            <mat-chip class="pro-gradient" (selectable)="false">Beta</mat-chip>
                         </mat-chip-list>
                     </ng-template>
 

@@ -15,6 +15,7 @@ export class StatsPageComponent implements OnInit {
   sub: Subscription;
   isLoaded: boolean;
   hasStats: boolean;
+  taskStats: any[];
 
   constructor(public afAuth: AngularFireAuth, public statsService: StatsService) { }
 
@@ -22,9 +23,12 @@ export class StatsPageComponent implements OnInit {
     this.hasStats = false;
     this.isLoaded = false;
     this.getUser();
-    this.sub = this.statsService.getUserStats().subscribe((userStats) => (this.isLoaded = true,
-      this.userStats = userStats,
-      this.hasStats = !(userStats in window)));
+    this.sub = this.statsService.getUserStats().subscribe((userStats) => {
+      this.userStats = userStats;
+      this.hasStats = !(userStats in window);
+      this.fillStats();
+      this.isLoaded = true;
+    });
   }
 
   async getUser() {
@@ -35,6 +39,35 @@ export class StatsPageComponent implements OnInit {
   getFirstName() {
     if (this.user) {
       return this.user.displayName.split(' ')[0];
+    }
+  }
+
+  isNewAccount() {
+    if (this.user) {
+      const today = Date.now();
+      const registerDate = Date.parse(this.user.metadata.creationTime);
+      return ((today - registerDate) < (7 * 1000 * 60 * 60 * 24) );
+    }
+  }
+
+  fillStats() {
+    this.taskStats = [
+      {
+        name: 'Completed',
+        value: this.userStats.tasksCompleted
+      },
+      {
+        name: 'Uncompleted',
+        value: this.userStats.tasksCreated - this.userStats.tasksCompleted
+      }
+    ];
+  }
+
+  taskCompletedComment() {
+    if (this.isLoaded) {
+      const percent = Math.round(100 * (this.userStats.tasksCompleted / this.userStats.tasksCreated));
+      return percent > 50 ? `You've finished ${percent}% of your tasks here. Nice going!`
+      : `You've finished ${percent}% of your tasks here. You've probably just delegated yourself a new load of tasks - best of luck!`;
     }
   }
 

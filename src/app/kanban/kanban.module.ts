@@ -14,6 +14,7 @@ import { TaskDialogComponent } from './dialogs/task-dialog.component';
 import { BoardListComponent } from './board-list/board-list.component';
 import { DeleteButtonComponent } from './buttons/delete-button/delete-button.component';
 import { FocusInputDirective } from './directives/focus-input.directive';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FocusInputDirective } from './directives/focus-input.directive';
     DragDropModule,
     MatDialogModule,
     MatButtonToggleModule,
+    MatCheckboxModule
   ],
   entryComponents: [BoardDialogComponent, TaskDialogComponent]
 })

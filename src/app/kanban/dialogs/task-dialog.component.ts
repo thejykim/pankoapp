@@ -22,7 +22,7 @@ import { BoardService } from '../board.service';
       >
         <mat-button-toggle *ngFor="let color of labelOptions" [value]="color">
           <mat-icon [ngClass]="color">{{
-            color === 'gray' ? 'check_circle' : 'lens'
+            'lens'
           }}</mat-icon>
         </mat-button-toggle>
       </mat-button-toggle-group>
@@ -38,7 +38,7 @@ import { BoardService } from '../board.service';
   styleUrls: ['./dialog.scss'],
 })
 export class TaskDialogComponent {
-  labelOptions = ['purple', 'blue', 'green', 'yellow', 'red', 'gray'];
+  labelOptions = ['purple', 'blue', 'green', 'yellow', 'red'];
 
   constructor(
     public dialogRef: MatDialogRef<TaskDialogComponent>,

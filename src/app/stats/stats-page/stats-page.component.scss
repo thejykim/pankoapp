@@ -10,22 +10,41 @@ h2 {
 
 .intro-card {
     text-align: center;
-    margin:auto;
+    margin: auto;
     padding: 2rem 10rem;
     margin-bottom: 3rem;
     max-width: 20rem;
+    color: white;
 }
 
 .info-card {
+    box-sizing: border-box;
     text-align: center;
-    width: 60vw;
+    width: 100%;
     margin-top: 1rem;
 }
 
 .warning-card {
-    background-color: #ffb347;;
+    color: black;
+    background: #ffcf44;
     margin: 1rem 5% 1rem 5%;
     text-align: center;
+}
+
+.graph-card {
+    background: white;
+    width: 60%;
+    margin: auto;
+    color: dimgray;
+}
+
+.graph {
+    display: inline-block;
+}
+
+.ngx-charts text {
+    fill: white;
+    color: white;
 }
 
 h1 {

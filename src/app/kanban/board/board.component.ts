@@ -26,7 +26,7 @@ export class BoardComponent {
   }
 
   openDialog(task?: Task, idx?: number): void {
-    const newTask = { label: 'purple' };
+    const newTask = { label: 'purple', isDone: false };
     const dialogRef = this.dialog.open(TaskDialogComponent, {
       width: '500px',
       data: task
@@ -69,6 +69,19 @@ export class BoardComponent {
     }
 
     this.editingTitle = false;
+  }
+
+  checkTask(event, task: Task, idx: number) {
+    event.stopPropagation();
+    if (task.hasOwnProperty('isDone')) {
+      task.isDone = !task.isDone;
+    } else {
+      task.isDone = true;
+    }
+
+    const update = this.board.tasks;
+    update.splice(idx, 1, task);
+    this.boardService.toggleTask(this.board.id, this.board.tasks, task.isDone);
   }
 
 }

@@ -1,4 +1,4 @@
-<mat-card class="outer-card light">
+<mat-card class="outer-card curved">
     <mat-card-header>
         <form *ngIf="editingTitle">
             <input name="boardTitle" [(ngModel)]="boardTitle" class="boardTitle" (focusout)="editTitle()" appFocusInput>
@@ -7,12 +7,22 @@
             {{ board.title }}
         </mat-card-title>
 
+        <div class="fill-space"></div>
+
         <ng-content></ng-content>
     </mat-card-header>
 
     <div class="tasks" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="taskDrop($event)">
         <div class="inner-card" cdkDrag cdkDragBoundary=".outer-card" *ngFor="let task of board.tasks; let i = index" (click)="openDialog(task, i)">
-            <mat-card [ngClass]="task.label" [innerHTML]="parseNewLine(task.description)"></mat-card>
+            <mat-card [ngClass]="task.isDone ? 'gray' : task.label" class="curved">
+                <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                    <div layout="row" layout-align="start center" flex>
+                        <div [innerHTML]="parseNewLine(task.description)"></div>
+                        <span flex></span>
+                    </div>
+                    <mat-checkbox aria-label="Finished?" [checked]="task.isDone" (click)="checkTask($event, task, i)"></mat-checkbox>
+                </section>
+            </mat-card>
         </div>
 
         <button mat-stroked-button (click)="openDialog()">
