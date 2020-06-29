@@ -31,8 +31,4 @@ export class PieTasksComponent {
     Object.assign(this, this.single);
   }
 
-  onSelect(event) {
-    console.log(event);
-  }
-
 }

@@ -16,6 +16,7 @@ export class StatsPageComponent implements OnInit {
   isLoaded: boolean;
   hasStats: boolean;
   taskStats: any[];
+  boardStats: any[];
 
   constructor(public afAuth: AngularFireAuth, public statsService: StatsService) { }
 
@@ -59,6 +60,14 @@ export class StatsPageComponent implements OnInit {
       {
         name: 'Uncompleted',
         value: this.userStats.tasksCreated - this.userStats.tasksCompleted
+      }
+    ];
+
+    const cardBoardRatio = Math.round(this.userStats.tasksCreated / this.userStats.boardsCreated);
+    this.boardStats = [
+      {
+        name: cardBoardRatio === 1 ? 'card per board' : 'cards per board',
+        value: cardBoardRatio
       }
     ];
   }
