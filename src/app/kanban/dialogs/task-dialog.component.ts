@@ -15,7 +15,7 @@ import { BoardService } from '../board.service';
           [(ngModel)]="data.task.description"
         ></textarea>
       </mat-form-field>
-      <br />
+      <br>
       <mat-button-toggle-group
         #group="matButtonToggleGroup"
         [(ngModel)]="data.task.label"
@@ -26,6 +26,9 @@ import { BoardService } from '../board.service';
           }}</mat-icon>
         </mat-button-toggle>
       </mat-button-toggle-group>
+      <br>
+      <br>
+      <mat-checkbox [(ngModel)]="data.task.isDone">Completed?</mat-checkbox>
     </div>
     <div mat-dialog-actions>
       <button mat-button [mat-dialog-close]="data" cdkFocusInitial>

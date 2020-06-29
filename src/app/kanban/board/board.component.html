@@ -13,14 +13,14 @@
     </mat-card-header>
 
     <div class="tasks" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="taskDrop($event)">
-        <div class="inner-card" cdkDrag cdkDragBoundary=".outer-card" *ngFor="let task of board.tasks; let i = index" (click)="openDialog(task, i)">
+        <div class="inner-card" cdkDrag cdkDragBoundary=".outer-card" *ngFor="let task of board.tasks; let i = index"
+        (click)="openDialog(task, i)" (contextmenu)="checkTask($event, task, i)">
             <mat-card [ngClass]="task.isDone ? 'gray' : task.label" class="curved">
                 <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
                     <div layout="row" layout-align="start center" flex>
                         <div [innerHTML]="parseNewLine(task.description)"></div>
                         <span flex></span>
                     </div>
-                    <mat-checkbox aria-label="Finished?" [checked]="task.isDone" (click)="checkTask($event, task, i)"></mat-checkbox>
                 </section>
             </mat-card>
         </div>

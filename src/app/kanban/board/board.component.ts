@@ -40,7 +40,7 @@ export class BoardComponent {
           this.boardService.createTask(this.board.id, [
             ...this.board.tasks,
             result.task
-          ]);
+          ], result.task.isDone);
         } else {
           const update = this.board.tasks;
           update.splice(result.idx, 1, result.task);
@@ -82,6 +82,8 @@ export class BoardComponent {
     const update = this.board.tasks;
     update.splice(idx, 1, task);
     this.boardService.toggleTask(this.board.id, this.board.tasks, task.isDone);
+
+    return false;
   }
 
 }

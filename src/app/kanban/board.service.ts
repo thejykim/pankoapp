@@ -31,12 +31,17 @@ export class BoardService {
   }
 
   // create card
-  async createTask(boardID: string, tasks: Task[]) {
+  async createTask(boardID: string, tasks: Task[], isCompleted: boolean) {
     const user = await this.afAuth.currentUser;
     const increment = firebase.firestore.FieldValue.increment(1);
 
-    this.editTasks(boardID, tasks).then(doc =>
-      this.db.collection('userStats').doc(user.uid).set({tasksCreated: increment}, {merge: true}));
+    this.editTasks(boardID, tasks).then(doc => {
+      if (!isCompleted) {
+        this.db.collection('userStats').doc(user.uid).set({tasksCreated: increment}, {merge: true});
+      } else {
+        this.db.collection('userStats').doc(user.uid).set({tasksCreated: increment, tasksCompleted: increment}, {merge: true});
+      }
+    });
   }
 
   // edit cards on board
