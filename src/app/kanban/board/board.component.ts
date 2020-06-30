@@ -43,7 +43,6 @@ export class BoardComponent {
             result.task
           ], result.task, result.task.isDone);
         } else if (result.prevStatus !== result.task.isDone) {
-          console.log(result.prevStatus + ", " + task.isDone);
           const update = this.board.tasks;
           update.splice(result.idx, 1, result.task);
           this.boardService.toggleTask(this.board.id, this.board.tasks, result.task, task.isDone);
