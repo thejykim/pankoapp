@@ -9,7 +9,7 @@ export class PieTasksComponent {
 
   @Input() single: any[];
 
-  view: any[] = [700, 400];
+  view: any[];
 
   // options
   showLegend = true;
@@ -28,7 +28,12 @@ export class PieTasksComponent {
   doughnut = false;
 
   constructor() {
+    this.view = [parent.innerWidth * 0.2, parent.innerWidth * 0.2];
     Object.assign(this, this.single);
+  }
+
+  onResize(event) {
+    this.view = [event.target.innerWidth * 0.2, event.target.innerWidth * 0.2];
   }
 
 }
