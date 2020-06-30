@@ -35,13 +35,23 @@ export class BoardService {
     const user = await this.afAuth.currentUser;
     const increment = firebase.firestore.FieldValue.increment(1);
 
-    this.editTasks(boardID, tasks).then(doc => {
-      if (!isCompleted) {
-        this.db.collection('userStats').doc(user.uid).set({tasksCreated: increment}, {merge: true});
-      } else {
-        this.db.collection('userStats').doc(user.uid).set({tasksCreated: increment, tasksCompleted: increment}, {merge: true});
-      }
-    });
+    const db = firebase.firestore();
+    const batch = db.batch();
+
+    // update board doc
+    const boardRef = db.collection('boards').doc(boardID);
+    batch.update(boardRef, { tasks });
+
+    // update user stats
+    const userRef = db.collection('userStats').doc(user.uid);
+    if (!isCompleted) {
+      batch.set(userRef, {tasksCreated: increment}, {merge: true});
+    } else {
+      batch.set(userRef, {tasksCreated: increment, tasksCompleted: increment}, {merge: true});
+    }
+
+    // commit batch
+    batch.commit();
   }
 
   // edit cards on board
@@ -50,13 +60,23 @@ export class BoardService {
   }
 
   // toggle card completion
-  async toggleTask(boardID: string, tasks: Task[], completed: boolean) {
+  async toggleTask(boardID: string, tasks: Task[], isCompleted: boolean) {
     const user = await this.afAuth.currentUser;
-    const increment = firebase.firestore.FieldValue.increment(completed ? 1 : -1);
+    const increment = firebase.firestore.FieldValue.increment(isCompleted ? 1 : -1);
 
-    this.editTasks(boardID, tasks).then(doc => {
-      this.db.collection('userStats').doc(user.uid).set({tasksCompleted: increment}, {merge: true});
-    })
+    const db = firebase.firestore();
+    const batch = db.batch();
+
+    // update board doc
+    const boardRef = db.collection('boards').doc(boardID);
+    batch.update(boardRef, { tasks });
+
+    // update user stats
+    const userRef = db.collection('userStats').doc(user.uid);
+    batch.set(userRef, {tasksCompleted: increment}, {merge: true});
+
+    // commit batch
+    batch.commit();
   }
 
   // remove card on board
