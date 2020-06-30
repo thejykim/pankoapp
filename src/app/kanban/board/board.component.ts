@@ -26,11 +26,12 @@ export class BoardComponent {
   }
 
   openDialog(task?: Task, idx?: number): void {
-    const newTask = { label: 'purple', isDone: false };
+    const newTask = { label: 'purple', isDone: false, completed: 0 };
+
     const dialogRef = this.dialog.open(TaskDialogComponent, {
       width: '500px',
       data: task
-        ? { task: { ...task }, isNew: false, boardId: this.board.id, idx }
+        ? { task: { ...task }, isNew: false, boardId: this.board.id, idx, prevStatus: task.isDone }
         : { task: newTask, isNew: true }
     });
 
@@ -40,7 +41,12 @@ export class BoardComponent {
           this.boardService.createTask(this.board.id, [
             ...this.board.tasks,
             result.task
-          ], result.task.isDone);
+          ], result.task, result.task.isDone);
+        } else if (result.prevStatus !== result.task.isDone) {
+          console.log(result.prevStatus + ", " + task.isDone);
+          const update = this.board.tasks;
+          update.splice(result.idx, 1, result.task);
+          this.boardService.toggleTask(this.board.id, this.board.tasks, result.task, task.isDone);
         } else {
           const update = this.board.tasks;
           update.splice(result.idx, 1, result.task);
@@ -81,7 +87,7 @@ export class BoardComponent {
 
     const update = this.board.tasks;
     update.splice(idx, 1, task);
-    this.boardService.toggleTask(this.board.id, this.board.tasks, task.isDone);
+    this.boardService.toggleTask(this.board.id, this.board.tasks, task, task.isDone);
 
     return false;
   }

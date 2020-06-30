@@ -52,28 +52,30 @@ export class StatsPageComponent implements OnInit {
   }
 
   fillStats() {
-    this.taskStats = [
-      {
-        name: 'Complete',
-        value: this.userStats.tasksCompleted
-      },
-      {
-        name: 'Incomplete',
-        value: this.userStats.tasksCreated - this.userStats.tasksCompleted
-      }
-    ];
-
-    const cardBoardRatio = Math.round(this.userStats.tasksCreated / this.userStats.boardsCreated);
-    this.boardStats = [
-      {
-        name: this.userStats.tasksCreated === 1 ? 'task created' : 'tasks created',
-        value: this.userStats.tasksCreated
-      },
-      {
-        name: cardBoardRatio === 1 ? 'card per board' : 'cards per board',
-        value: cardBoardRatio
-      }
-    ];
+    if (this.isLoaded) {
+      this.taskStats = [
+        {
+          name: 'Complete',
+          value: this.userStats.tasksCompleted
+        },
+        {
+          name: 'Incomplete',
+          value: this.userStats.tasksCreated - this.userStats.tasksCompleted
+        }
+      ];
+  
+      const cardBoardRatio = Math.round(this.userStats.tasksCreated / this.userStats.boardsCreated);
+      this.boardStats = [
+        {
+          name: this.userStats.tasksCreated === 1 ? 'task created' : 'tasks created',
+          value: this.userStats.tasksCreated
+        },
+        {
+          name: cardBoardRatio === 1 ? 'card per board' : 'cards per board',
+          value: cardBoardRatio
+        }
+      ];
+    }
   }
 
   taskCompletedComment() {

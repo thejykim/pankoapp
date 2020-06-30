@@ -16,13 +16,17 @@ export class BoardService {
   async createBoard(data: Board) {
     const user = await this.afAuth.currentUser;
     const increment = firebase.firestore.FieldValue.increment(1);
+    const creationDate = firebase.firestore.FieldValue.arrayUnion(Date.now());
 
     return this.db.collection('boards').add({
       ...data,
       uid: user.uid,
-      tasks: [{ description: 'Click to edit me!', label: 'yellow', isDone: false }]
+      tasks: [{ description: 'Click to edit me!', label: 'yellow', isDone: false, completed: 0 }]
     }).then(doc =>
-      this.db.collection('userStats').doc(user.uid).set({boardsCreated: increment, tasksCreated: increment}, {merge: true}));
+      this.db.collection('userStats').doc(user.uid).set(
+        {boardsCreated: increment, tasksCreated: increment, creationTimes: creationDate}, {merge: true}
+      )
+    );
   }
 
   // delete a board
@@ -31,12 +35,25 @@ export class BoardService {
   }
 
   // create card
-  async createTask(boardID: string, tasks: Task[], isCompleted: boolean) {
+  async createTask(boardID: string, tasks: Task[], task: Task, isCompleted: boolean) {
     const user = await this.afAuth.currentUser;
     const increment = firebase.firestore.FieldValue.increment(1);
+    const creationDate = firebase.firestore.FieldValue.arrayUnion(Date.now());
 
     const db = firebase.firestore();
     const batch = db.batch();
+
+    let previousCompletion;
+
+    if (!isCompleted && task.hasOwnProperty('completed')) {
+      previousCompletion = task.completed;
+    }
+
+    // update task
+    task.completed = isCompleted ? Date.now() : 0;
+
+    const updateDate = isCompleted ? firebase.firestore.FieldValue.arrayUnion(task.completed)
+    : firebase.firestore.FieldValue.arrayRemove(previousCompletion);
 
     // update board doc
     const boardRef = db.collection('boards').doc(boardID);
@@ -45,9 +62,11 @@ export class BoardService {
     // update user stats
     const userRef = db.collection('userStats').doc(user.uid);
     if (!isCompleted) {
-      batch.set(userRef, {tasksCreated: increment}, {merge: true});
+      batch.set(userRef, {tasksCreated: increment, creationTimes: creationDate}, {merge: true});
     } else {
-      batch.set(userRef, {tasksCreated: increment, tasksCompleted: increment}, {merge: true});
+      batch.set(userRef,
+        {tasksCreated: increment, tasksCompleted: increment, creationTimes: creationDate, completedTimes: updateDate}, {merge: true}
+      );
     }
 
     // commit batch
@@ -60,9 +79,21 @@ export class BoardService {
   }
 
   // toggle card completion
-  async toggleTask(boardID: string, tasks: Task[], isCompleted: boolean) {
+  async toggleTask(boardID: string, tasks: Task[], task: Task, isCompleted: boolean) {
     const user = await this.afAuth.currentUser;
     const increment = firebase.firestore.FieldValue.increment(isCompleted ? 1 : -1);
+
+    let previousCompletion;
+
+    if (!isCompleted && task.hasOwnProperty('completed')) {
+      previousCompletion = task.completed;
+    }
+
+    // update task
+    task.completed = isCompleted ? Date.now() : 0;
+
+    const updateDate = isCompleted ? firebase.firestore.FieldValue.arrayUnion(task.completed)
+    : firebase.firestore.FieldValue.arrayRemove(previousCompletion);
 
     const db = firebase.firestore();
     const batch = db.batch();
@@ -73,7 +104,7 @@ export class BoardService {
 
     // update user stats
     const userRef = db.collection('userStats').doc(user.uid);
-    batch.set(userRef, {tasksCompleted: increment}, {merge: true});
+    batch.set(userRef, {tasksCompleted: increment, completedTimes: updateDate}, {merge: true});
 
     // commit batch
     batch.commit();
