@@ -54,11 +54,11 @@ export class StatsPageComponent implements OnInit {
   fillStats() {
     this.taskStats = [
       {
-        name: 'Completed',
+        name: 'Complete',
         value: this.userStats.tasksCompleted
       },
       {
-        name: 'Uncompleted',
+        name: 'Incomplete',
         value: this.userStats.tasksCreated - this.userStats.tasksCompleted
       }
     ];
