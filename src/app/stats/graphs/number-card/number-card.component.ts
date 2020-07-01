@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-number-card',
   templateUrl: './number-card.component.html',
   styleUrls: ['./number-card.component.scss']
 })
-export class NumberCardComponent implements OnInit {
+export class NumberCardComponent {
   @Input() single: any[];
 
   view: any[];
@@ -21,9 +21,6 @@ export class NumberCardComponent implements OnInit {
 
   onResize(event) {
     this.view = [event.target.innerWidth * 0.3, (event.target.innerWidth * 0.3) * (4 / 7)];
-  }
-
-  ngOnInit(): void {
   }
 
 }

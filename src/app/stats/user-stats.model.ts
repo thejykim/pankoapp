@@ -3,5 +3,5 @@ export interface UserStats {
     tasksCreated: number;
     tasksCompleted: number;
     creationTimes: number[];
-    completionTimes: number[];
+    completedTimes: number[];
 }

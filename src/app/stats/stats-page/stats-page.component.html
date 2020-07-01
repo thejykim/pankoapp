@@ -50,12 +50,18 @@
                     </mat-card>
 
                     <mat-card class="info-card" *ngIf="!isNewAccount()">
-                        <mat-card-title>
-                            <h2>This feature isn't available yet.</h2>
-                        </mat-card-title>
-                        <mat-card-content>
-                            <p>Once it is, you'll be able to analyze your personal trends of delegating yourself tasks, when you're most efficient, and more.</p>
-                        </mat-card-content>
+                        <mat-card class="graph-card shadow curved">
+                            <h2>Habits Breakdown</h2>
+                            <div class="graph">
+                                <app-line-habits [single]="perDayStats" yAxisLabel="# of tasks"></app-line-habits>
+                            </div>
+
+                            <br>
+
+                            <div class="graph">
+                                <app-line-habits [single]="perWeekStats" yAxisLabel="# of tasks"></app-line-habits>
+                            </div>
+                        </mat-card>
                     </mat-card>
                 </mat-tab>
 

@@ -13,9 +13,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PieTasksComponent } from './graphs/pie-tasks/pie-tasks.component';
 import { NumberCardComponent } from './graphs/number-card/number-card.component';
+import { LineHabitsComponent } from './graphs/line-habits/line-habits.component';
 
 @NgModule({
-  declarations: [StatsPageComponent, PieTasksComponent, NumberCardComponent],
+  declarations: [StatsPageComponent, PieTasksComponent, NumberCardComponent, LineHabitsComponent],
   imports: [
     CommonModule,
     StatsRoutingModule,
