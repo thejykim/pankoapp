@@ -26,6 +26,7 @@ export class StatsPageComponent implements OnInit {
     this.getUser();
     this.sub = this.statsService.getUserStats().subscribe((userStats) => {
       this.userStats = userStats;
+      console.log(this.userStats);
       this.hasStats = !(userStats in window);
       this.fillStats();
       this.isLoaded = true;
@@ -63,7 +64,7 @@ export class StatsPageComponent implements OnInit {
           value: this.userStats.tasksCreated - this.userStats.tasksCompleted
         }
       ];
-  
+
       const cardBoardRatio = Math.round(this.userStats.tasksCreated / this.userStats.boardsCreated);
       this.boardStats = [
         {
