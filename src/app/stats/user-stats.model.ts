@@ -5,3 +5,7 @@ export interface UserStats {
     creationTimes: number[];
     completedTimes: number[];
 }
+
+export let taskCreationType: 'morning' | 'afternoon' | 'night' | 'morning-afternoon' | 'morning-night' | 'afternoon-night';
+
+export let taskCompletionType: 'morning' | 'afternoon' | 'night' | 'morning-afternoon' | 'morning-night' | 'afternoon-night';

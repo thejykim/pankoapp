@@ -12,7 +12,7 @@ export class NumberCardComponent {
 
   colorScheme = {
     domain: ['#23d5ab', '#23a6d5']
-  }
+  };
 
   constructor() {
     this.view = [parent.innerWidth * 0.3, 400];

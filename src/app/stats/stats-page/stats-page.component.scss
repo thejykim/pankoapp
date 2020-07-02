@@ -42,9 +42,11 @@ h2 {
     display: inline-block;
 }
 
-.ngx-charts text {
-    fill: white;
-    color: white;
+::ng-deep ngx-charts-number-card {
+    text, p {
+        color: white !important;
+        fill: white !important;
+    }
 }
 
 h1 {

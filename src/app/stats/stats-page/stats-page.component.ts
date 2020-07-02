@@ -19,6 +19,7 @@ export class StatsPageComponent implements OnInit {
   boardStats: any[];
   perDayStats: any[];
   perWeekStats: any[];
+  creationType: string;
 
   constructor(public afAuth: AngularFireAuth, public statsService: StatsService) { }
 
@@ -54,7 +55,7 @@ export class StatsPageComponent implements OnInit {
   }
 
   fillStats() {
-    if (this.hasStats) {
+    if (this.hasStats && !this.isNewAccount()) {
       // Basic stats
       this.taskStats = [
         {
@@ -370,10 +371,38 @@ export class StatsPageComponent implements OnInit {
   }
 
   taskCompletedComment() {
-    if (this.isLoaded) {
+    if (this.isLoaded && !this.isNewAccount()) {
       const percent = Math.round(100 * (this.userStats.tasksCompleted / this.userStats.tasksCreated));
       return percent > 50 ? `You've finished ${percent}% of your tasks here. Nice going!`
       : `You've finished ${percent}% of your tasks here. You've probably just delegated yourself a new load of tasks - best of luck!`;
+    }
+  }
+
+  categorizeHabits() {
+    if (this.hasStats) {
+      const createdPerSection = [0, 0, 0];
+
+      // categorize by day
+      for (let i = 0; i < 24; i++) {
+        if (i < 3 || i > 20) {
+          // night
+          createdPerSection[2] += this.perDayStats[0].series[i];
+        } else if (i > 3 && i < 13) {
+          // morning
+          createdPerSection[0] += this.perDayStats[0].series[i];
+        } else {
+          // afternoon
+          createdPerSection[1] += this.perDayStats[0].series[i];
+        }
+      }
+
+      if (createdPerSection[0] > createdPerSection[1] && createdPerSection[0] > createdPerSection[2]) {
+        this.creationType = 'Morning person!';
+      } else if (createdPerSection[1] > createdPerSection[0] && createdPerSection[1] > createdPerSection[2]) {
+        this.creationType = 'Afternoon person!';
+      } else {
+        this.creationType = 'Evening person!';
+      }
     }
   }
 
