@@ -43,7 +43,7 @@ export class LineHabitsComponent {
 
     if (label.includes('12')) {
       return label;
-    } else if (label.includes('AM') || label.includes('PM')) {
+    } else if (/\d/.test(label)) {
       return (parseInt(label.charAt(0), 10) % 3 === 0) ? label : '';
     } else {
       return label;

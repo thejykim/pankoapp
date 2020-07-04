@@ -11,7 +11,7 @@ h2 {
 .intro-card {
     text-align: center;
     margin: auto;
-    padding: 2rem 10rem;
+    padding: 6rem 10rem;
     margin-bottom: 3rem;
     max-width: 20rem;
     color: white;
@@ -39,6 +39,8 @@ h2 {
 }
 
 .graph {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     display: inline-block;
 }
 
@@ -47,6 +49,44 @@ h2 {
         color: white !important;
         fill: white !important;
     }
+}
+
+.creation-card {
+    text-align: left;
+    padding: 4rem 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    text-shadow: 1px 1px 6px black;
+}
+
+.completion-card {
+    position: relative;
+    overflow: hidden;
+    text-align: right;
+    padding: 4rem 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    transform: scaleX(-1);
+    text-shadow: 1px 1px 6px black;
+}
+
+.flip {
+    transform: scaleX(-1);
+}
+
+.morning {
+    background-image: url('https://pixelart.io/uploads/2018-11-25/pixelart_1543158146798.png') !important;
+    background-position: 50% 70% !important;
+}
+
+.afternoon {
+    background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ecd2c236-236d-4505-b50b-b4bdd83bb808/d85q46h-03bf021c-2bf4-40f7-bee2-913b67af9ed9.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWNkMmMyMzYtMjM2ZC00NTA1LWI1MGItYjRiZGQ4M2JiODA4XC9kODVxNDZoLTAzYmYwMjFjLTJiZjQtNDBmNy1iZWUyLTkxM2I2N2FmOWVkOS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.mxY9ECE6jtBGoAFfekMYy7ye28_QfVh32sQnMVKj5Jc) !important;
+    background-position: 20% 50% !important;
+}
+
+.evening {
+    background-image: url('https://ih1.redbubble.net/image.118834932.7176/flat,750x,075,f-pad,750x1000,f8f8f8.u3.jpg') !important;
+    background-position: 40% 30% !important;
 }
 
 h1 {

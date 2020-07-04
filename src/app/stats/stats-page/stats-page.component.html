@@ -6,7 +6,7 @@
     <div *ngIf="isLoaded">
 
         <mat-card class="intro-card curved shadow animated-gradient">
-            <mat-card-content><h1>Your insights</h1></mat-card-content>
+            <h1>Your Insights</h1>
         </mat-card>
 
         <div style="width: 60vw; min-height: 800px" *ngIf="hasStats">
@@ -29,8 +29,6 @@
 
                                 <p>{{ taskCompletedComment() }}</p>
 
-                                <br>
-
                                 <div class="graph">
                                     <app-number-card [single]="boardStats"></app-number-card>
                                 </div>
@@ -51,13 +49,36 @@
 
                     <mat-card class="info-card" *ngIf="!isNewAccount()">
                         <mat-card class="graph-card shadow curved">
-                            <h2>Habits Breakdown</h2>
+                            <mat-card class="creation-card morning shadow" *ngIf="creationType === 'morning'">
+                                <h2>You like to delegate in the morning...</h2>
+                            </mat-card>
+
+                            <mat-card class="creation-card afternoon shadow" *ngIf="creationType === 'afternoon'">
+                                <h2>You like to delegate in the afternoon...</h2>
+                            </mat-card>
+
+                            <mat-card class="creation-card evening shadow" *ngIf="creationType === 'evening'">
+                                <h2>You like to delegate in the evening...</h2>
+                            </mat-card>
+
+                            <mat-card class="completion-card morning shadow" *ngIf="completionType === 'morning'">
+                                <h2 class="flip">...and complete most of your work in the morning.</h2>
+                            </mat-card>
+
+                            <mat-card class="completion-card afternoon shadow" *ngIf="completionType === 'afternoon'">
+                                <h2 class="flip">...and complete most of your work in the afternoon.</h2>
+                            </mat-card>
+
+                            <mat-card class="completion-card evening shadow" *ngIf="completionType === 'evening'">
+                                <h2 class="flip">...and complete most of your work in the evening.</h2>
+                            </mat-card>
+
+                            <h2>Activity per hour</h2>
                             <div class="graph">
                                 <app-line-habits [single]="perDayStats" yAxisLabel="# of tasks"></app-line-habits>
                             </div>
-
-                            <br>
-
+                            
+                            <h2>Activity per day</h2>
                             <div class="graph">
                                 <app-line-habits [single]="perWeekStats" yAxisLabel="# of tasks"></app-line-habits>
                             </div>

@@ -20,6 +20,7 @@ export class StatsPageComponent implements OnInit {
   perDayStats: any[];
   perWeekStats: any[];
   creationType: string;
+  completionType: string;
 
   constructor(public afAuth: AngularFireAuth, public statsService: StatsService) { }
 
@@ -31,6 +32,7 @@ export class StatsPageComponent implements OnInit {
       this.userStats = userStats;
       this.hasStats = !(userStats in window);
       this.fillStats();
+      this.categorizeHabits();
       this.isLoaded = true;
     });
   }
@@ -292,31 +294,31 @@ export class StatsPageComponent implements OnInit {
           name: 'Tasks created',
           series: [
             {
-              name: 'Sunday',
+              name: 'Sun',
               value: 0
             },
             {
-              name: 'Monday',
+              name: 'Mon',
               value: 0
             },
             {
-              name: 'Tuesday',
+              name: 'Tue',
               value: 0
             },
             {
-              name: 'Wednesday',
+              name: 'Wed',
               value: 0
             },
             {
-              name: 'Thursday',
+              name: 'Thu',
               value: 0
             },
             {
-              name: 'Friday',
+              name: 'Fri',
               value: 0
             },
             {
-              name: 'Saturday',
+              name: 'Sat',
               value: 0
             },
           ]
@@ -325,31 +327,31 @@ export class StatsPageComponent implements OnInit {
           name: 'Tasks completed',
           series: [
             {
-              name: 'Sunday',
+              name: 'Sun',
               value: 0
             },
             {
-              name: 'Monday',
+              name: 'Mon',
               value: 0
             },
             {
-              name: 'Tuesday',
+              name: 'Tue',
               value: 0
             },
             {
-              name: 'Wednesday',
+              name: 'Wed',
               value: 0
             },
             {
-              name: 'Thursday',
+              name: 'Thu',
               value: 0
             },
             {
-              name: 'Friday',
+              name: 'Fri',
               value: 0
             },
             {
-              name: 'Saturday',
+              name: 'Sat',
               value: 0
             },
           ]
@@ -381,27 +383,43 @@ export class StatsPageComponent implements OnInit {
   categorizeHabits() {
     if (this.hasStats) {
       const createdPerSection = [0, 0, 0];
+      const completedPerSection = [0, 0, 0];
 
       // categorize by day
       for (let i = 0; i < 24; i++) {
         if (i < 3 || i > 20) {
           // night
-          createdPerSection[2] += this.perDayStats[0].series[i];
+          createdPerSection[2] += this.perDayStats[0].series[i].value;
+          completedPerSection[2] += this.perDayStats[1].series[i].value;
         } else if (i > 3 && i < 13) {
           // morning
-          createdPerSection[0] += this.perDayStats[0].series[i];
+          createdPerSection[0] += this.perDayStats[0].series[i].value;
+          completedPerSection[0] += this.perDayStats[1].series[i].value;
         } else {
           // afternoon
-          createdPerSection[1] += this.perDayStats[0].series[i];
+          createdPerSection[1] += this.perDayStats[0].series[i].value;
+          completedPerSection[1] += this.perDayStats[1].series[i].value;
         }
       }
 
+      console.log(createdPerSection);
+      console.log(completedPerSection);
+
+      // categorize
       if (createdPerSection[0] > createdPerSection[1] && createdPerSection[0] > createdPerSection[2]) {
-        this.creationType = 'Morning person!';
+        this.creationType = 'morning';
       } else if (createdPerSection[1] > createdPerSection[0] && createdPerSection[1] > createdPerSection[2]) {
-        this.creationType = 'Afternoon person!';
+        this.creationType = 'afternoon';
       } else {
-        this.creationType = 'Evening person!';
+        this.creationType = 'evening';
+      }
+
+      if (completedPerSection[0] > completedPerSection[1] && completedPerSection[0] > completedPerSection[2]) {
+        this.completionType = 'morning';
+      } else if (completedPerSection[1] > completedPerSection[0] && completedPerSection[1] > completedPerSection[2]) {
+        this.completionType = 'afternoon';
+      } else {
+        this.completionType = 'evening';
       }
     }
   }
