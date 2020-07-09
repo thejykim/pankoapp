@@ -57,7 +57,7 @@ export class StatsPageComponent implements OnInit {
   }
 
   fillStats() {
-    if (this.hasStats && !this.isNewAccount()) {
+    if (this.hasStats) {
       // Basic stats
       this.taskStats = [
         {
@@ -83,305 +83,99 @@ export class StatsPageComponent implements OnInit {
       ];
 
       // Habits
+      if (!this.isNewAccount()) {
+        this.perDayStats = [];
+        this.perWeekStats = [];
 
-      this.perDayStats = [
-        {
-          name: 'Tasks created',
-          series: [
-            {
-              name: '12AM',
-              value: 0
-            },
-            {
-              name: '1AM',
-              value: 0
-            },
-            {
-              name: '2AM',
-              value: 0
-            },
-            {
-              name: '3AM',
-              value: 0
-            },
-            {
-              name: '4AM',
-              value: 0
-            },
-            {
-              name: '5AM',
-              value: 0
-            },
-            {
-              name: '6AM',
-              value: 0
-            },
-            {
-              name: '7AM',
-              value: 0
-            },
-            {
-              name: '8AM',
-              value: 0
-            },
-            {
-              name: '9AM',
-              value: 0
-            },
-            {
-              name: '10AM',
-              value: 0
-            },
-            {
-              name: '11AM',
-              value: 0
-            },
-            {
-              name: '12PM',
-              value: 0
-            },
-            {
-              name: '1PM',
-              value: 0
-            },
-            {
-              name: '2PM',
-              value: 0
-            },
-            {
-              name: '3PM',
-              value: 0
-            },
-            {
-              name: '4PM',
-              value: 0
-            },
-            {
-              name: '5PM',
-              value: 0
-            },
-            {
-              name: '6PM',
-              value: 0
-            },
-            {
-              name: '7PM',
-              value: 0
-            },
-            {
-              name: '8PM',
-              value: 0
-            },
-            {
-              name: '9PM',
-              value: 0
-            },
-            {
-              name: '10PM',
-              value: 0
-            },
-            {
-              name: '11PM',
-              value: 0
-            }
-          ]
-        },
-        {
-          name: 'Tasks completed',
-          series: [
-            {
-              name: '12AM',
-              value: 0
-            },
-            {
-              name: '1AM',
-              value: 0
-            },
-            {
-              name: '2AM',
-              value: 0
-            },
-            {
-              name: '3AM',
-              value: 0
-            },
-            {
-              name: '4AM',
-              value: 0
-            },
-            {
-              name: '5AM',
-              value: 0
-            },
-            {
-              name: '6AM',
-              value: 0
-            },
-            {
-              name: '7AM',
-              value: 0
-            },
-            {
-              name: '8AM',
-              value: 0
-            },
-            {
-              name: '9AM',
-              value: 0
-            },
-            {
-              name: '10AM',
-              value: 0
-            },
-            {
-              name: '11AM',
-              value: 0
-            },
-            {
-              name: '12PM',
-              value: 0
-            },
-            {
-              name: '1PM',
-              value: 0
-            },
-            {
-              name: '2PM',
-              value: 0
-            },
-            {
-              name: '3PM',
-              value: 0
-            },
-            {
-              name: '4PM',
-              value: 0
-            },
-            {
-              name: '5PM',
-              value: 0
-            },
-            {
-              name: '6PM',
-              value: 0
-            },
-            {
-              name: '7PM',
-              value: 0
-            },
-            {
-              name: '8PM',
-              value: 0
-            },
-            {
-              name: '9PM',
-              value: 0
-            },
-            {
-              name: '10PM',
-              value: 0
-            },
-            {
-              name: '11PM',
-              value: 0
-            }
-          ]
-        }
-      ];
+        this.generateDataArray(this.perDayStats, 'Tasks created', 'hours');
+        this.generateDataArray(this.perDayStats, 'Tasks completed', 'hours');
 
-      this.perWeekStats = [
-        {
-          name: 'Tasks created',
-          series: [
-            {
-              name: 'Sun',
-              value: 0
-            },
-            {
-              name: 'Mon',
-              value: 0
-            },
-            {
-              name: 'Tue',
-              value: 0
-            },
-            {
-              name: 'Wed',
-              value: 0
-            },
-            {
-              name: 'Thu',
-              value: 0
-            },
-            {
-              name: 'Fri',
-              value: 0
-            },
-            {
-              name: 'Sat',
-              value: 0
-            },
-          ]
-        },
-        {
-          name: 'Tasks completed',
-          series: [
-            {
-              name: 'Sun',
-              value: 0
-            },
-            {
-              name: 'Mon',
-              value: 0
-            },
-            {
-              name: 'Tue',
-              value: 0
-            },
-            {
-              name: 'Wed',
-              value: 0
-            },
-            {
-              name: 'Thu',
-              value: 0
-            },
-            {
-              name: 'Fri',
-              value: 0
-            },
-            {
-              name: 'Sat',
-              value: 0
-            },
-          ]
-        }
-      ];
+        this.generateDataArray(this.perWeekStats, 'Tasks created', 'days');
+        this.generateDataArray(this.perWeekStats, 'Tasks completed', 'days');
 
-      this.userStats.creationTimes.forEach(time => {
-        const date = new Date(time);
-        this.perDayStats[0].series[date.getHours()].value++;
-        this.perWeekStats[0].series[date.getDay()].value++;
-      });
+        this.userStats.creationTimes.forEach(time => {
+          const date = new Date(time);
+          this.perDayStats[0].series[date.getHours()].value++;
+          this.perWeekStats[0].series[date.getDay()].value++;
+        });
 
-      this.userStats.completedTimes.forEach(time => {
-        const date = new Date(time);
-        this.perDayStats[1].series[date.getHours()].value++;
-        this.perWeekStats[1].series[date.getDay()].value++;
-      });
+        this.userStats.completedTimes.forEach(time => {
+          const date = new Date(time);
+          this.perDayStats[1].series[date.getHours()].value++;
+          this.perWeekStats[1].series[date.getDay()].value++;
+        });
+
+      }
     }
   }
 
   taskCompletedComment() {
-    if (this.isLoaded && !this.isNewAccount()) {
+    if (this.isLoaded && this.hasStats) {
       const percent = Math.round(100 * (this.userStats.tasksCompleted / this.userStats.tasksCreated));
       return percent > 50 ? `You've finished ${percent}% of your tasks here. Nice going!`
       : `You've finished ${percent}% of your tasks here. You've probably just delegated yourself a new load of tasks - best of luck!`;
     }
   }
 
+  generateDataArray(result: any[], title: string, type: string) {
+    const data = {
+      name: title,
+      series: []
+    };
+
+    if (type === 'hours') {
+      let hour = 12;
+      let isAM = false;
+
+      while (!(hour === 11 && !isAM)) {
+        if (hour === 0) {
+          hour++;
+          continue;
+        }
+
+        data.series.push({
+          name: hour + (isAM ? 'AM' : 'PM'),
+          value: 0
+        });
+
+        if (hour === 12) {
+          isAM = !isAM;
+          hour = 1;
+        } else {
+          hour++;
+        }
+      }
+
+      // add in the last hour
+      data.series.push({
+        name: '11PM',
+        value: 0
+      });
+
+    } else if (type === 'days') {
+      // days of the week
+      const weekday = new Array(7);
+      weekday[0] = 'Mon';
+      weekday[1] = 'Tue';
+      weekday[2] = 'Wed';
+      weekday[3] = 'Thu';
+      weekday[4] = 'Fri';
+      weekday[5] = 'Sat';
+      weekday[6] = 'Sun';
+
+      for (let i = 0; i < 7; i++) {
+        data.series.push({
+          name: weekday[i],
+          value: 0
+        });
+      }
+    }
+
+    result.push(data);
+  }
+
   categorizeHabits() {
-    if (this.hasStats) {
+    if (this.hasStats && !this.isNewAccount()) {
       const createdPerSection = [0, 0, 0];
       const completedPerSection = [0, 0, 0];
 
@@ -401,9 +195,6 @@ export class StatsPageComponent implements OnInit {
           completedPerSection[1] += this.perDayStats[1].series[i].value;
         }
       }
-
-      console.log(createdPerSection);
-      console.log(completedPerSection);
 
       // categorize
       if (createdPerSection[0] > createdPerSection[1] && createdPerSection[0] > createdPerSection[2]) {
