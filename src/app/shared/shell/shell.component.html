@@ -36,7 +36,7 @@
         <span class="fill-space"></span>
         
         <div *ngIf="!(isHandset$ | async)">
-          <a mat-button routerLink="/kanban">📝 Kanban</a>
+          <a mat-button routerLink="/planner">📝 Planner</a>
           <a *ngIf="!(afAuth.authState | async)" mat-button routerLink="/login">🔑 Login</a>
           <a *ngIf="afAuth.authState | async" mat-button [matMenuTriggerFor]="menu">🧑 Profile</a>
         </div>

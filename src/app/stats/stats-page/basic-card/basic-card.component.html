@@ -1,0 +1,19 @@
+<mat-card class="info-card">
+    <mat-card-title>
+        <h2>Basic</h2>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-card class="graph-card shadow curved">
+            <h2>Tasks Breakdown</h2>
+            <div class="graph">
+                <app-pie-tasks [single]="taskStats"></app-pie-tasks>
+            </div>
+
+            <p>{{ taskCompletedComment() }}</p>
+
+            <div class="graph">
+                <app-number-card [single]="boardStats"></app-number-card>
+            </div>
+        </mat-card>
+    </mat-card-content>
+</mat-card>

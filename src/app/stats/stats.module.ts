@@ -14,9 +14,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PieTasksComponent } from './graphs/pie-tasks/pie-tasks.component';
 import { NumberCardComponent } from './graphs/number-card/number-card.component';
 import { LineHabitsComponent } from './graphs/line-habits/line-habits.component';
+import { HabitsCardComponent } from './stats-page/habits-card/habits-card.component';
+import { BasicCardComponent } from './stats-page/basic-card/basic-card.component';
 
 @NgModule({
-  declarations: [StatsPageComponent, PieTasksComponent, NumberCardComponent, LineHabitsComponent],
+  declarations: [StatsPageComponent, PieTasksComponent, NumberCardComponent, LineHabitsComponent, HabitsCardComponent, BasicCardComponent],
   imports: [
     CommonModule,
     StatsRoutingModule,

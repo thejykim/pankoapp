@@ -6,35 +6,13 @@
     <div *ngIf="isLoaded">
 
         <mat-card class="intro-card curved shadow animated-gradient">
-            <h1>Your Insights</h1>
+            <h1>{{ getFirstName() }}'s Insights</h1>
         </mat-card>
 
         <div style="width: 60vw; min-height: 800px" *ngIf="hasStats">
             <mat-tab-group dynamicHeight mat-align-tabs="center">
                 <mat-tab label="📈 Basic">
-                    <mat-card class="info-card">
-                        <mat-card-title>
-                            <h2>Basic</h2>
-                        </mat-card-title>
-                        <mat-card-content>
-                            <mat-card *ngIf="userStats.boardsCreated < 50" class="warning-card curved">
-                                <mat-card-content>It looks like you haven't handled many tasks yet. That's okay, but the data you see below may not be very accurate. 👍</mat-card-content>
-                            </mat-card>
-                            
-                            <mat-card class="graph-card shadow curved">
-                                <h2>Tasks Breakdown</h2>
-                                <div class="graph">
-                                    <app-pie-tasks [single]="taskStats"></app-pie-tasks>
-                                </div>
-
-                                <p>{{ taskCompletedComment() }}</p>
-
-                                <div class="graph">
-                                    <app-number-card [single]="boardStats"></app-number-card>
-                                </div>
-                            </mat-card>
-                        </mat-card-content>
-                    </mat-card>
+                    <app-basic-card [userStats]="userStats" *ngIf="isLoaded"></app-basic-card>
                 </mat-tab>
 
                 <mat-tab label="📆 Habits">
@@ -47,43 +25,7 @@
                         </mat-card-content>
                     </mat-card>
 
-                    <mat-card class="info-card" *ngIf="!isNewAccount()">
-                        <mat-card class="graph-card shadow curved">
-                            <mat-card class="creation-card morning shadow" *ngIf="creationType === 'morning'">
-                                <h2>You like to delegate in the morning...</h2>
-                            </mat-card>
-
-                            <mat-card class="creation-card afternoon shadow" *ngIf="creationType === 'afternoon'">
-                                <h2>You like to delegate in the afternoon...</h2>
-                            </mat-card>
-
-                            <mat-card class="creation-card evening shadow" *ngIf="creationType === 'evening'">
-                                <h2>You like to delegate in the evening...</h2>
-                            </mat-card>
-
-                            <mat-card class="completion-card morning shadow" *ngIf="completionType === 'morning'">
-                                <h2 class="flip">...and complete most of your work in the morning.</h2>
-                            </mat-card>
-
-                            <mat-card class="completion-card afternoon shadow" *ngIf="completionType === 'afternoon'">
-                                <h2 class="flip">...and complete most of your work in the afternoon.</h2>
-                            </mat-card>
-
-                            <mat-card class="completion-card evening shadow" *ngIf="completionType === 'evening'">
-                                <h2 class="flip">...and complete most of your work in the evening.</h2>
-                            </mat-card>
-
-                            <h2>Activity per hour</h2>
-                            <div class="graph">
-                                <app-line-habits [single]="perDayStats" yAxisLabel="# of tasks"></app-line-habits>
-                            </div>
-                            
-                            <h2>Activity per day</h2>
-                            <div class="graph">
-                                <app-line-habits [single]="perWeekStats" yAxisLabel="# of tasks"></app-line-habits>
-                            </div>
-                        </mat-card>
-                    </mat-card>
+                    <app-habits-card [userStats]="userStats" *ngIf="isLoaded && !isNewAccount()"></app-habits-card>
                 </mat-tab>
 
                 <mat-tab label="Third">

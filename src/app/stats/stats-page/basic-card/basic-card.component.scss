@@ -1,0 +1,50 @@
+h2 {
+    font-weight: 600;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+.intro-card {
+    text-align: center;
+    margin: auto;
+    padding: 6rem 10rem;
+    margin-bottom: 3rem;
+    max-width: 20rem;
+    color: white;
+}
+
+.info-card {
+    box-sizing: border-box;
+    text-align: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.warning-card {
+    color: black;
+    background: #ffcf44;
+    margin: 1rem 5% 1rem 5%;
+    text-align: center;
+}
+
+.graph-card {
+    background: white;
+    width: 60%;
+    margin: auto;
+    color: dimgray;
+}
+
+.graph {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+::ng-deep ngx-charts-number-card {
+    text, p {
+        color: white !important;
+        fill: white !important;
+    }
+}
