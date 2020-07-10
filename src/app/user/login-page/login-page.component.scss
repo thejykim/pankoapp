@@ -4,6 +4,10 @@ button {
     }
 }
 
+mat-card {
+    max-width: 500px;
+    margin: auto;
+}
 
 :host {
     text-align: center;

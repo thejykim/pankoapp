@@ -25,7 +25,7 @@
                         </mat-card-content>
                     </mat-card>
 
-                    <mat-card class="info-card" *ngIf="!isNewAccount() || !hasHabitProperties()">
+                    <mat-card class="info-card" *ngIf="!isNewAccount() && !hasHabitProperties()">
                         <mat-card-title>
                             <h2>Not enough data yet.</h2>
                         </mat-card-title>

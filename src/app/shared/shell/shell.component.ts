@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shell',
@@ -18,8 +18,11 @@ export class ShellComponent {
       shareReplay()
     );
 
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    public afAuth: AngularFireAuth
-  ) {}
+  constructor(private breakpointObserver: BreakpointObserver, public afAuth: AngularFireAuth, private router: Router) {}
+
+  signOut() {
+    this.afAuth.signOut().then(() => {
+      this.router.navigate(['']);
+    })
+  }
 }
