@@ -6,13 +6,13 @@
     <div *ngIf="isLoaded">
 
         <mat-card class="intro-card curved shadow animated-gradient">
-            <h1>{{ getFirstName() }}'s Insights</h1>
+            <h1>My Insights</h1>
         </mat-card>
 
-        <div style="width: 60vw; min-height: 800px" *ngIf="hasStats">
+        <div style="width: 60vw; min-height: 800px" *ngIf="hasStats && hasBasicProperties()">
             <mat-tab-group dynamicHeight mat-align-tabs="center">
                 <mat-tab label="📈 Basic">
-                    <app-basic-card [userStats]="userStats" *ngIf="isLoaded"></app-basic-card>
+                    <app-basic-card [userStats]="userStats" *ngIf="isLoaded && hasBasicProperties()"></app-basic-card>
                 </mat-tab>
 
                 <mat-tab label="📆 Habits">
@@ -25,7 +25,16 @@
                         </mat-card-content>
                     </mat-card>
 
-                    <app-habits-card [userStats]="userStats" *ngIf="isLoaded && !isNewAccount()"></app-habits-card>
+                    <mat-card class="info-card" *ngIf="!isNewAccount() || !hasHabitProperties()">
+                        <mat-card-title>
+                            <h2>Not enough data yet.</h2>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <p>It's been a week, but it looks like you haven't used your boards very much. An empty habits page wouldn't have anything to tell you, so keep using your boards and come back soon.</p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <app-habits-card [userStats]="userStats" *ngIf="isLoaded && !isNewAccount() && hasHabitProperties()"></app-habits-card>
                 </mat-tab>
 
                 <mat-tab label="Third">
@@ -48,7 +57,7 @@
             </mat-tab-group>
         </div>
 
-        <div style="text-align: center;" *ngIf="!hasStats">
+        <div style="text-align: center;" *ngIf="!hasStats || !hasBasicProperties()">
             <h2>Not enough data yet.</h2>
     
             <p>Keep using your boards normally, {{ getFirstName() }}, and we'll fill this up soon enough.</p>

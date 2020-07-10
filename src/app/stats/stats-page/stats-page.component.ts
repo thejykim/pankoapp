@@ -47,4 +47,18 @@ export class StatsPageComponent implements OnInit {
       return ((today - registerDate) < (7 * 1000 * 60 * 60 * 24) );
     }
   }
+
+  hasBasicProperties() {
+    return this.userStats.hasOwnProperty('tasksCreated')
+    && this.userStats.hasOwnProperty('tasksCompleted')
+    && this.userStats.hasOwnProperty('boardsCreated');
+  }
+
+  hasHabitProperties() {
+    return this.userStats.hasOwnProperty('tasksCreated')
+    && this.userStats.hasOwnProperty('tasksCompleted')
+    && this.userStats.hasOwnProperty('boardsCreated')
+    && this.userStats.hasOwnProperty('creationTimes')
+    && this.userStats.hasOwnProperty('completionTimes');
+  }
 }
