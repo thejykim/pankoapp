@@ -4,11 +4,18 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Task } from '../board.model';
 import { TaskDialogComponent } from '../dialogs/task-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { jello } from 'ng-animate';
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.scss']
+  styleUrls: ['./board.component.scss'],
+  animations: [
+    trigger('jello', [transition('* => *', useAnimation(jello, {
+      params: { scale: 10 }
+    }))])
+  ],
 })
 export class BoardComponent {
   @Input() board;
@@ -17,6 +24,7 @@ export class BoardComponent {
   boardField: HTMLInputElement;
   oldBoardTitle: string;
   @Input() boardTitle: string;
+  jello: any;
 
   constructor(private boardService: BoardService, public dialog: MatDialog) { }
 
