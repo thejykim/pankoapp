@@ -1,4 +1,11 @@
 <main>
+  <div class="tip">
+    <mat-card class="curved" style="display: inline-flex">
+      <mat-card-content style="display: inline-table">
+        <p><strong>Tip:</strong> Right click on tasks to mark them as complete.</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
   <div cdkDropList cdkDropListOrientation="horizontal" class="boards" (cdkDropListDropped)="drop($event)">
 
     <div class="board-button">
