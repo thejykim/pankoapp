@@ -104,6 +104,15 @@ main {
   flex: 1 1 auto;
 }
 
+mat-card.jumbotron {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  text-align: center;
+  color: white;
+  border: 4px solid #23a6d5;
+  margin-bottom: 2rem;
+}
+
 mat-card.curved {
   border-radius: 20px !important;
 }

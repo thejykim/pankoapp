@@ -2,6 +2,31 @@
 
 Your own productivity assistant, built with [Angular CLI](https://github.com/angular/angular-cli).
 
-## Deployment
+## Getting started
 
-Major releases are deployed [at our website](https://kanban-37f41.web.app).
+With Node.js and the latest version of Angular installed, clone this repository and run ```npm install``` to install the project's dependencies.
+
+## Data storage
+
+The application uses Firestore for data storage. Data collected can be summarized in two parts:
+
+### Per user
+
+```
+boardsCreated (number)
+completedTimes (array of numbers)
+creationTimes (array of numbers)
+tasksCreated (number)
+tasksCompleted (number)
+```
+
+### Per board
+
+```
+priority (number)
+tasks (array of maps)
+ => completed (number)
+ => description (string)
+ => isDone (bool)
+ => label (string)
+```
