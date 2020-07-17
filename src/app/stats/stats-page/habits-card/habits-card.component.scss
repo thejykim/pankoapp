@@ -1,9 +1,11 @@
 .creation-card {
     text-align: left;
     padding: 4rem 2rem;
+    margin: auto;
     margin-top: 3rem;
     margin-bottom: 3rem;
     text-shadow: 1px 1px 6px black;
+    width: 60%;
 }
 
 .completion-card {
@@ -11,10 +13,32 @@
     overflow: hidden;
     text-align: right;
     padding: 4rem 2rem;
+    margin: auto;
     margin-top: 3rem;
     margin-bottom: 3rem;
     transform: scaleX(-1);
     text-shadow: 1px 1px 6px black;
+    width: 60%;
+}
+
+mat-select {
+    width: fit-content !important;
+    min-width: 100%;
+}
+
+::ng-deep .mat-form-field-infix {
+    min-width: 75px !important;
+    width: fit-content !important;
+}
+
+::ng-deep mat-select .mat-select-value {
+    width: fit-content;
+    min-width: 2ch;
+    max-width: 25ch;
+}
+::ng-deep mat-select .mat-select-placeholder {
+    width: fit-content;
+    min-width: 10ch;
 }
 
 .flip {
@@ -22,18 +46,21 @@
 }
 
 .morning {
-    background-image: url('https://pixelart.io/uploads/2018-11-25/pixelart_1543158146798.png') !important;
-    background-position: 50% 70% !important;
+    background-image: url('https://giffiles.alphacoders.com/784/78401.gif') !important;
+    background-position: 50% 50% !important;
+    background-size: cover;
 }
 
 .afternoon {
-    background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ecd2c236-236d-4505-b50b-b4bdd83bb808/d85q46h-03bf021c-2bf4-40f7-bee2-913b67af9ed9.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZWNkMmMyMzYtMjM2ZC00NTA1LWI1MGItYjRiZGQ4M2JiODA4XC9kODVxNDZoLTAzYmYwMjFjLTJiZjQtNDBmNy1iZWUyLTkxM2I2N2FmOWVkOS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.mxY9ECE6jtBGoAFfekMYy7ye28_QfVh32sQnMVKj5Jc) !important;
+    background-image: url('https://i.imgur.com/5dTpkxC.gif') !important;
     background-position: 20% 50% !important;
+    background-size: cover;
 }
 
 .evening {
-    background-image: url('https://ih1.redbubble.net/image.118834932.7176/flat,750x,075,f-pad,750x1000,f8f8f8.u3.jpg') !important;
-    background-position: 40% 30% !important;
+    background-image: url('https://thirdmonk.net/postcont/2013/10/perfectly-looping-psychedelic-trippy-gifs-LbPQJQU.gif') !important;
+    //background-image: url('https://i.pinimg.com/originals/18/03/0b/18030b06cb33fcedf337bf6dc9b9473f.gif') !important;
+    background-size: cover;
 }
 
 h1 {
@@ -62,7 +89,8 @@ h2 {
 .info-card {
     box-sizing: border-box;
     text-align: center;
-    width: 100%;
+    width: 95%;
+    margin: auto;
     margin-top: 1rem;
 }
 

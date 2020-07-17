@@ -15,12 +15,12 @@ export class NumberCardComponent {
   };
 
   constructor() {
-    this.view = [parent.innerWidth * 0.3, 400];
+    this.view = [parent.innerWidth * 0.35, (parent.innerWidth * 0.35) * (4 / 7)];
     Object.assign(this, this.single);
   }
 
   onResize(event) {
-    this.view = [event.target.innerWidth * 0.3, (event.target.innerWidth * 0.3) * (4 / 7)];
+    this.view = [event.target.innerWidth * 0.35, (event.target.innerWidth * 0.35) * (4 / 7)];
   }
 
 }

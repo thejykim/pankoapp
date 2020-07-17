@@ -1,9 +1,9 @@
-<mat-card class="info-card">
+<mat-card class="info-card curved">
     <mat-card *ngIf="userStats.tasksCreated < 50" class="warning-card curved">
         <mat-card-content>It looks like you haven't handled many tasks yet. That's okay, but the data you see below may not be very accurate. 👍</mat-card-content>
     </mat-card>
     
-    <mat-card class="graph-card shadow curved">
+    <mat-card-content>
         <mat-card class="creation-card morning shadow" *ngIf="creationType === 'morning'">
             <h2>You like to delegate in the morning...</h2>
         </mat-card>
@@ -28,14 +28,23 @@
             <h2 class="flip">...and complete most of your work in the evening.</h2>
         </mat-card>
 
-        <h2>Activity per hour</h2>
-        <div class="graph">
-            <app-line-habits [single]="perDayStats" yAxisLabel="# of tasks"></app-line-habits>
+        <div class="curved outline shadow" style="margin: auto">
+            <h2>Activity per 
+                <mat-form-field>
+                    <mat-select [(value)]="displayGraphType">
+                        <mat-option value="hour">hour</mat-option>
+                        <mat-option value="day">day</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </h2>
+    
+            <div class="graph" *ngIf="displayGraphType === 'hour'">
+                <app-line-habits [single]="perDayStats" yAxisLabel="# of tasks"></app-line-habits>
+            </div>
+            
+            <div class="graph" *ngIf="displayGraphType === 'day'">
+                <app-line-habits [single]="perWeekStats" yAxisLabel="# of tasks"></app-line-habits>
+            </div>
         </div>
-        
-        <h2>Activity per day</h2>
-        <div class="graph">
-            <app-line-habits [single]="perWeekStats" yAxisLabel="# of tasks"></app-line-habits>
-        </div>
-    </mat-card>
+    </mat-card-content>
 </mat-card>

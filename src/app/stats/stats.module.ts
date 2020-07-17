@@ -8,6 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 // Stats and graphs
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -26,7 +28,9 @@ import { BasicCardComponent } from './stats-page/basic-card/basic-card.component
     MatProgressSpinnerModule,
     MatTabsModule,
     MatChipsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatSelectModule,
+    MatFormFieldModule
   ]
 })
 export class StatsModule { }

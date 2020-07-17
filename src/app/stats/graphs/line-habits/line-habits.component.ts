@@ -28,12 +28,12 @@ export class LineHabitsComponent {
   };
 
   constructor() {
-    this.view = [parent.innerWidth * 0.3, (innerWidth * 0.3) * (5 / 7)];
+    this.view = [parent.innerWidth * 0.35, (innerWidth * 0.35) * (5 / 7)];
     Object.assign(this, this.single);
   }
 
   onResize(event) {
-    this.view = [event.target.innerWidth * 0.3, (event.target.innerWidth * 0.3) * (5 / 7)];
+    this.view = [event.target.innerWidth * 0.35, (event.target.innerWidth * 0.35) * (5 / 7)];
   }
 
   parseLabel(label: string) {

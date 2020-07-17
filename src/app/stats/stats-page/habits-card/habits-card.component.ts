@@ -15,11 +15,14 @@ export class HabitsCardComponent implements OnInit {
   creationType: string;
   completionType: string;
 
+  displayGraphType: string;
+
   constructor(public afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
     this.fillStats();
     this.categorizeHabits();
+    this.displayGraphType = 'hour';
   }
 
   fillStats() {

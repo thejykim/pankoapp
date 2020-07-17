@@ -28,12 +28,12 @@ export class PieTasksComponent {
   doughnut = false;
 
   constructor() {
-    this.view = [parent.innerWidth * 0.2, parent.innerWidth * 0.2];
+    this.view = [parent.innerWidth * 0.25, parent.innerWidth * 0.25];
     Object.assign(this, this.single);
   }
 
   onResize(event) {
-    this.view = [event.target.innerWidth * 0.2, event.target.innerWidth * 0.2];
+    this.view = [event.target.innerWidth * 0.25, event.target.innerWidth * 0.25];
   }
 
 }
