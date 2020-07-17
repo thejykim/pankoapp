@@ -49,7 +49,7 @@ export class BasicCardComponent implements OnInit {
     if (true) {
       const percent = Math.round(100 * (this.userStats.tasksCompleted / this.userStats.tasksCreated));
       return percent > 50 ? `You've finished ${percent}% of your tasks here. Nice going!`
-      : `You've finished ${percent}% of your tasks here. You've probably just delegated yourself a new load of tasks - best of luck!`;
+      : `You've finished ${percent}% of your tasks here.`;
     }
   }
 

@@ -74,12 +74,21 @@ h2 {
 }
 
 .graph-card {
-    background: white;
     width: 60%;
     margin: auto;
-    color: dimgray;
 }
 
 .graph {
     display: inline-block;
+}
+
+::ng-deep ngx-charts-area-chart {
+    text, p {
+        color: white !important;
+        fill: white !important;
+    }
+}
+
+::ng-deep .gridline-path-vertical {
+    display: none;
 }
