@@ -1,50 +1,72 @@
 <mat-card class="info-card curved">
+    <mat-card-title>
+        <h2>Habits Breakdown</h2>
+    </mat-card-title>
+
     <mat-card *ngIf="userStats.tasksCreated < 50" class="warning-card curved">
         <mat-card-content>It looks like you haven't handled many tasks yet. That's okay, but the data you see below may not be very accurate. 👍</mat-card-content>
     </mat-card>
     
     <mat-card-content>
-        <mat-card class="creation-card morning shadow" *ngIf="creationType === 'morning'">
-            <h2>You like to delegate in the morning...</h2>
-        </mat-card>
+        <mat-accordion multi>
+            <mat-expansion-panel class="dark" expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Work type
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
 
-        <mat-card class="creation-card afternoon shadow" *ngIf="creationType === 'afternoon'">
-            <h2>You like to delegate in the afternoon...</h2>
-        </mat-card>
+                <mat-card class="creation-card morning shadow" *ngIf="creationType === 'morning'">
+                    <h2>You like to delegate in the morning...</h2>
+                </mat-card>
+        
+                <mat-card class="creation-card afternoon shadow" *ngIf="creationType === 'afternoon'">
+                    <h2>You like to delegate in the afternoon...</h2>
+                </mat-card>
+        
+                <mat-card class="creation-card evening shadow" *ngIf="creationType === 'evening'">
+                    <h2>You like to delegate in the evening...</h2>
+                </mat-card>
+        
+                <mat-card class="completion-card morning shadow" *ngIf="completionType === 'morning'">
+                    <h2 class="flip">...and complete most of your work in the morning.</h2>
+                </mat-card>
+        
+                <mat-card class="completion-card afternoon shadow" *ngIf="completionType === 'afternoon'">
+                    <h2 class="flip">...and complete most of your work in the afternoon.</h2>
+                </mat-card>
+        
+                <mat-card class="completion-card evening shadow" *ngIf="completionType === 'evening'">
+                    <h2 class="flip">...and complete most of your work in the evening.</h2>
+                </mat-card>
+            </mat-expansion-panel>
 
-        <mat-card class="creation-card evening shadow" *ngIf="creationType === 'evening'">
-            <h2>You like to delegate in the evening...</h2>
-        </mat-card>
+            <mat-expansion-panel class="dark" expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Activity
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
 
-        <mat-card class="completion-card morning shadow" *ngIf="completionType === 'morning'">
-            <h2 class="flip">...and complete most of your work in the morning.</h2>
-        </mat-card>
-
-        <mat-card class="completion-card afternoon shadow" *ngIf="completionType === 'afternoon'">
-            <h2 class="flip">...and complete most of your work in the afternoon.</h2>
-        </mat-card>
-
-        <mat-card class="completion-card evening shadow" *ngIf="completionType === 'evening'">
-            <h2 class="flip">...and complete most of your work in the evening.</h2>
-        </mat-card>
-
-        <div class="curved outline shadow" style="margin: auto">
-            <h2>Activity per 
-                <mat-form-field>
-                    <mat-select [(value)]="displayGraphType">
-                        <mat-option value="hour">hour</mat-option>
-                        <mat-option value="day">day</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </h2>
-    
-            <div class="graph" *ngIf="displayGraphType === 'hour'">
-                <app-line-habits [single]="perDayStats" yAxisLabel="# of tasks"></app-line-habits>
-            </div>
+                <mat-card class="curved outline shadow" style="margin: auto">
+                    <h2>Activity per 
+                        <mat-form-field>
+                            <mat-select [(value)]="displayGraphType">
+                                <mat-option value="hour">hour</mat-option>
+                                <mat-option value="day">day</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </h2>
             
-            <div class="graph" *ngIf="displayGraphType === 'day'">
-                <app-line-habits [single]="perWeekStats" yAxisLabel="# of tasks"></app-line-habits>
-            </div>
-        </div>
+                    <div class="graph" *ngIf="displayGraphType === 'hour'">
+                        <app-line-habits [single]="perDayStats" yAxisLabel="# of tasks"></app-line-habits>
+                    </div>
+                    
+                    <div class="graph" *ngIf="displayGraphType === 'day'">
+                        <app-line-habits [single]="perWeekStats" yAxisLabel="# of tasks"></app-line-habits>
+                    </div>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
     </mat-card-content>
 </mat-card>

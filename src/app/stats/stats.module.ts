@@ -10,6 +10,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // Stats and graphs
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -30,7 +31,8 @@ import { BasicCardComponent } from './stats-page/basic-card/basic-card.component
     MatChipsModule,
     NgxChartsModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatExpansionModule
   ]
 })
 export class StatsModule { }

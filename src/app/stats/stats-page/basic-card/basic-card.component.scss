@@ -6,6 +6,24 @@ h1 {
     font-weight: 700;
 }
 
+mat-expansion-panel {
+    width: 90% !important;
+    margin: auto !important;
+    margin-bottom: 1rem !important;
+}
+
+mat-panel-title {
+    justify-content: center !important;
+}
+
+.dark {
+    background-color: rgb(48, 48, 48) !important;
+}
+
+.dark {
+    background-color: rgb(48, 48, 48) !important;
+}
+
 .intro-card {
     text-align: center;
     margin: auto;

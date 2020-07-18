@@ -8,3 +8,33 @@ main {
     max-width: 90vw;
     margin: auto;
 }
+
+mat-card {
+    margin-bottom: 2rem;
+}
+
+mat-card-content {
+    padding: 0rem 2rem;
+
+    h3 {
+        font-weight: 400;
+    }
+}
+
+.buttons {
+    margin-top: 1rem;
+}
+
+.jumbotron {
+    margin-bottom: 4rem;
+}
+
+.underline {
+    border-bottom: 3px dashed #23d5ab;
+    text-decoration: none;
+    cursor: default;
+}
+
+::ng-deep .mat-tooltip {
+    font-size: 0.75em;
+}

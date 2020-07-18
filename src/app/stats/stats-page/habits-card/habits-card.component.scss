@@ -1,8 +1,22 @@
+mat-expansion-panel {
+    width: 90% !important;
+    margin: auto !important;
+    margin-bottom: 1rem !important;
+}
+
+mat-panel-title {
+    justify-content: center !important;
+}
+
+.dark {
+    background-color: rgb(48, 48, 48) !important;
+}
+
 .creation-card {
     text-align: left;
     padding: 4rem 2rem;
     margin: auto;
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-bottom: 3rem;
     text-shadow: 1px 1px 6px black;
     width: 60%;
@@ -14,7 +28,6 @@
     text-align: right;
     padding: 4rem 2rem;
     margin: auto;
-    margin-top: 3rem;
     margin-bottom: 3rem;
     transform: scaleX(-1);
     text-shadow: 1px 1px 6px black;
