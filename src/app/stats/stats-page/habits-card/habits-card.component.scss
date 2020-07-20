@@ -130,6 +130,13 @@ h2 {
     }
 }
 
+::ng-deep ngx-charts-line-chart {
+    text, p {
+        color: white !important;
+        fill: white !important;
+    }
+}
+
 ::ng-deep .gridline-path-vertical {
     display: none;
 }

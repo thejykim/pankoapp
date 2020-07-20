@@ -131,6 +131,11 @@ mat-dialog-container {
   border-radius: 10px !important;
 }
 
+g.line-chart > g:last-of-type > g:nth-child(2) g.line-series > path {
+  stroke: #23a6d5 !important;
+  stroke-dasharray: 6 10 !important;
+}
+
 .animated-gradient {
 	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 400% 400%;

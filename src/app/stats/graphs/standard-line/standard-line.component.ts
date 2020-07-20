@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import * as shape from 'd3-shape';
 
 @Component({
-  selector: 'app-line-habits',
-  templateUrl: './line-habits.component.html',
-  styleUrls: ['./line-habits.component.scss']
+  selector: 'app-standard-line',
+  templateUrl: './standard-line.component.html',
+  styleUrls: ['./standard-line.component.scss']
 })
-export class LineHabitsComponent {
+export class StandardLineComponent {
   @Input() single: any[];
   @Input() yAxisLabel: string;
   view: any[];
@@ -36,17 +36,13 @@ export class LineHabitsComponent {
     this.view = [event.target.innerWidth * 0.35, (event.target.innerWidth * 0.35) * (5 / 7)];
   }
 
-  parseLabel(label: string) {
-    if (!label) {
-      return label;
-    }
-
-    if (label.includes('12')) {
-      return label;
-    } else if (/\d/.test(label)) {
-      return (parseInt(label.charAt(0), 10) % 3 === 0) ? label : '';
+  performanceComment(model: any) {
+    if (model[1].value !== 0) {
+      const percent = Math.round(100 * ((model[0].value - model[1].value) / model[1].value));
+      return percent > 0 ? `${percent}% increase`
+      : `${percent}% decrease`;
     } else {
-      return label;
+      return `+${model[0].value} increase`;
     }
   }
 }

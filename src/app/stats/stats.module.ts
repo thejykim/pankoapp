@@ -19,9 +19,18 @@ import { NumberCardComponent } from './graphs/number-card/number-card.component'
 import { LineHabitsComponent } from './graphs/line-habits/line-habits.component';
 import { HabitsCardComponent } from './stats-page/habits-card/habits-card.component';
 import { BasicCardComponent } from './stats-page/basic-card/basic-card.component';
+import { StandardLineComponent } from './graphs/standard-line/standard-line.component';
 
 @NgModule({
-  declarations: [StatsPageComponent, PieTasksComponent, NumberCardComponent, LineHabitsComponent, HabitsCardComponent, BasicCardComponent],
+  declarations: [
+    StatsPageComponent,
+    PieTasksComponent,
+    NumberCardComponent,
+    LineHabitsComponent,
+    HabitsCardComponent,
+    BasicCardComponent,
+    StandardLineComponent
+  ],
   imports: [
     CommonModule,
     StatsRoutingModule,
