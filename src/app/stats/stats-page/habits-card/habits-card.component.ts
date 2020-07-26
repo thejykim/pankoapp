@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserStats } from '../../user-stats.model';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-habits-card',
@@ -14,16 +13,10 @@ export class HabitsCardComponent implements OnInit {
   // arrays for direct graph use
   perDayStats: any[];
   perWeekStats: any[];
-  weekComparisonGraph: any[];
-
-  // pure data arrays
-  weekComparison: any[];
 
   creationType: string;
   completionType: string;
   displayGraphType: string;
-
-  canCompareWeeks: boolean;
 
   constructor(public afAuth: AngularFireAuth) { }
 
@@ -55,59 +48,6 @@ export class HabitsCardComponent implements OnInit {
       this.perDayStats[1].series[date.getHours()].value++;
       this.perWeekStats[1].series[date.getDay()].value++;
     });
-
-    // Fill array for weekly comparison graphs
-    this.weekComparison = [];
-    this.weekComparisonGraph = [];
-    let tempArray = [];
-    const firstDate = new Date(this.userStats.completedTimes[0]);
-    tempArray[0] = firstDate;
-    this.weekComparison.push(tempArray);
-
-    for (let i = 1; i < this.userStats.completedTimes.length; i++) {
-      const date = new Date(this.userStats.completedTimes[i]);
-      const latestWeek = this.weekComparison[this.weekComparison.length - 1];
-      const prev = latestWeek[latestWeek.length - 1];
-      if (this.isSameWeek(date, prev)) {
-        // Add to the current week's index
-        latestWeek.push(date);
-      } else {
-        // Create a new week's index in array
-        tempArray = [];
-        tempArray[0] = date;
-        this.weekComparison.push(tempArray);
-      }
-    }
-
-    // check if week comparison can be drawn
-    if (this.weekComparison.length < 2) {
-      this.canCompareWeeks = false;
-    } else {
-      const currentDate = new Date();
-      const latestWeek = this.weekComparison[this.weekComparison.length - 1];
-
-      const weekBeforeToday = new Date(Date.now() - 604800000);
-      const prevWeek = this.weekComparison[this.weekComparison.length - 2];
-
-      if (this.isSameWeek(currentDate, latestWeek[latestWeek.length - 1]) &&
-      this.isSameWeek(weekBeforeToday, prevWeek[prevWeek.length - 1])) {
-        // user has data from both weeks
-        this.generateDataArray(this.weekComparisonGraph, 'Current week', 'days');
-        this.generateDataArray(this.weekComparisonGraph, 'Previous week', 'days');
-
-        latestWeek.forEach(time => {
-          this.weekComparisonGraph[0].series[time.getDay()].value++;
-        });
-
-        prevWeek.forEach(time => {
-          this.weekComparisonGraph[1].series[time.getDay()].value++;
-        });
-
-        this.canCompareWeeks = true;
-      } else {
-        this.canCompareWeeks = false;
-      }
-    }
   }
 
   generateDataArray(result: any[], title: string, type: string) {
@@ -204,11 +144,6 @@ export class HabitsCardComponent implements OnInit {
     } else {
       this.completionType = 'evening';
     }
-  }
-
-  // returns true if both dates are within the same calendar week, first must be earlier date
-  isSameWeek(first: Date, second: Date) {
-    return (moment(first).week() === moment(second).week());
   }
 
 }

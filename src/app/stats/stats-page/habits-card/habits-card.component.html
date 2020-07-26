@@ -10,9 +10,9 @@
     <mat-card-content>
         <mat-accordion multi>
             <mat-expansion-panel class="dark" expanded>
-                <mat-expansion-panel-header>
+                <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
                     <mat-panel-title>
-                        Work type
+                        <p class="bold-heading" style="text-align: left;">Work type</p>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 
@@ -42,9 +42,9 @@
             </mat-expansion-panel>
 
             <mat-expansion-panel class="dark" expanded>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Activity
+                <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+                    <mat-panel-title class="alt-header">
+                        <p class="bold-heading">Activity</p>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 
@@ -64,28 +64,6 @@
                     
                     <div class="graph" *ngIf="displayGraphType === 'day'">
                         <app-line-habits [single]="perWeekStats" yAxisLabel="# of tasks"></app-line-habits>
-                    </div>
-                </mat-card>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel class="dark" expanded>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Performance comparison
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-
-                <mat-card class="curved shadow" style="margin: auto" *ngIf="!canCompareWeeks">
-                    <h2>Not enough data yet.</h2>
-            
-                    <p>There's either no data for this week or the previous. In any case, keep knocking out tasks and check back soon.</p>
-                </mat-card>
-
-                <mat-card class="curved outline shadow" style="margin: auto" *ngIf="canCompareWeeks">
-                    <h2>Current week vs. previous week</h2>
-            
-                    <div class="graph">
-                        <app-standard-line [single]="weekComparisonGraph" yAxisLabel="Tasks completed"></app-standard-line>
                     </div>
                 </mat-card>
             </mat-expansion-panel>

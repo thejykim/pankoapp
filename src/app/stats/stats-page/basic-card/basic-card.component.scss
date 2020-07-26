@@ -13,7 +13,12 @@ mat-expansion-panel {
 }
 
 mat-panel-title {
-    justify-content: center !important;
+    height: 60px !important;
+    line-height: 60px;
+}
+
+mat-panel-title.alt-header {
+    justify-content: flex-end !important;
 }
 
 .dark {

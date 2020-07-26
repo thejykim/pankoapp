@@ -6,29 +6,55 @@
     <mat-card-content>
         <mat-accordion multi>
             <mat-expansion-panel class="dark" expanded>
-                <mat-expansion-panel-header>
+                <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
                     <mat-panel-title>
-                        Completion rate
+                        <p class="bold-heading">Performance comparison</p>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 
-                <div class="graph">
-                    <app-pie-tasks [single]="taskStats"></app-pie-tasks>
-                </div>
-        
-                <p>{{ taskCompletedComment() }}</p>
+                <mat-card class="curved shadow" style="margin: auto" *ngIf="!canCompareWeeks">
+                    <h2>Not enough data yet.</h2>
+            
+                    <p>There's either no data for this week or the previous. In any case, keep knocking out tasks and check back soon.</p>
+                </mat-card>
+
+                <mat-card class="curved outline shadow" style="margin: auto" *ngIf="canCompareWeeks">
+                    <h2>Current week vs. previous week</h2>
+            
+                    <div class="graph">
+                        <app-standard-line [single]="weekComparisonGraph" yAxisLabel="Tasks completed"></app-standard-line>
+                    </div>
+                </mat-card>
             </mat-expansion-panel>
 
             <mat-expansion-panel class="dark" expanded>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        General statistics
+                <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+                    <mat-panel-title class="alt-header">
+                        <p class="bold-heading">Completion rate</p>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 
-                <div class="graph" style="margin-top: 2rem;">
-                    <app-number-card [single]="boardStats"></app-number-card>
-                </div>
+                <mat-card class="curved outline shadow" style="margin: auto">
+                    <div class="graph">
+                        <app-pie-tasks [single]="taskStats"></app-pie-tasks>
+                    </div>
+            
+                    <p>{{ taskCompletedComment() }}</p>
+                </mat-card>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="dark" expanded>
+                <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+                    <mat-panel-title>
+                        <p class="bold-heading">General statistics</p>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-card class="curved outline shadow" style="margin: auto">
+                    <div class="graph" style="margin-top: 2rem;">
+                        <app-number-card [single]="boardStats"></app-number-card>
+                    </div>
+                </mat-card>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-card-content>
