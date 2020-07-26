@@ -2,15 +2,18 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { Board, Task } from './board.model';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoardService {
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) { }
+  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private http: HttpClient) { }
 
   // create a new board
   async createBoard(data: Board) {
@@ -36,9 +39,16 @@ export class BoardService {
 
   // create card
   async createTask(boardID: string, tasks: Task[], task: Task, isCompleted: boolean) {
+    let results: any;
+    let polarity: number;
+
+    results = await this.getPolarity(task.description);
+    polarity = results.result.polarity ? results.result.polarity : 0;
+
     const user = await this.afAuth.currentUser;
     const increment = firebase.firestore.FieldValue.increment(1);
     const creationDate = firebase.firestore.FieldValue.arrayUnion(Date.now());
+    const newPolarity = firebase.firestore.FieldValue.arrayUnion(polarity);
 
     const db = firebase.firestore();
     const batch = db.batch();
@@ -62,10 +72,10 @@ export class BoardService {
     // update user stats
     const userRef = db.collection('userStats').doc(user.uid);
     if (!isCompleted) {
-      batch.set(userRef, {tasksCreated: increment, creationTimes: creationDate}, {merge: true});
+      batch.set(userRef, {tasksCreated: increment, creationTimes: creationDate, polarities: newPolarity}, {merge: true});
     } else {
       batch.set(userRef,
-        {tasksCreated: increment, tasksCompleted: increment, creationTimes: creationDate, completedTimes: updateDate}, {merge: true}
+        {tasksCreated: increment, tasksCompleted: increment, creationTimes: creationDate, completedTimes: updateDate, polarities: newPolarity}, {merge: true}
       );
     }
 
@@ -152,5 +162,28 @@ export class BoardService {
     const refs = boards.map(b => db.collection('boards').doc(b.id));
     refs.forEach((ref, idx) => batch.update(ref, { priority: idx }));
     batch.commit();
+  }
+
+  async getPolarity(text: String) {
+    let results: Promise<Object>;
+
+    const body = {
+      'text': text
+    };
+
+    const options = {
+      headers: new HttpHeaders({
+        Accept: 'application/json',
+        'Content-Type':  'application/json'
+      })
+    };
+
+    results = this.http.post('https://sentim-api.herokuapp.com/api/v1/', body, options).pipe(
+      catchError(function(errorResponse: HttpErrorResponse) {
+        return throwError('Failed to calculate sentiment. Defaulting to neutral polarity!');
+      })
+    ).toPromise();
+
+    return Promise.resolve(results);
   }
 }

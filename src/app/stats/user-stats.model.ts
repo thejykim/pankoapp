@@ -4,8 +4,5 @@ export interface UserStats {
     tasksCompleted: number;
     creationTimes: number[];
     completedTimes: number[];
+    sentiments: number[];
 }
-
-export let taskCreationType: 'morning' | 'afternoon' | 'night' | 'morning-afternoon' | 'morning-night' | 'afternoon-night';
-
-export let taskCompletionType: 'morning' | 'afternoon' | 'night' | 'morning-afternoon' | 'morning-night' | 'afternoon-night';
