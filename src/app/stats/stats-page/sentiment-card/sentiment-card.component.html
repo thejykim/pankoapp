@@ -1,0 +1,77 @@
+<mat-card class="info-card curved">
+    <mat-card-content>
+        <mat-card class="beta-card dark curved">
+            <mat-chip-list aria-label="Beta feature">
+                <mat-chip class="pro-gradient" (selectable)="false">Beta feature!</mat-chip>
+                &nbsp;Sentiment polarities may not be accurate for all cards, particularly with a small sample size.
+            </mat-chip-list>
+        </mat-card>
+        <mat-accordion multi>
+            <mat-expansion-panel class="dark" expanded>
+                <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+                    <mat-panel-title>
+                        <p class="bold-heading" style="text-align: left;">Polarity</p>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-card class="curved outline shadow" style="margin: auto" *ngIf="avgPolarity > 0.1">
+                    <h1>😄 Remarkably positive</h1>
+                    <p>Your overall sentiments while delegating tasks for yourself are remarkably positive. <span class="underline"
+                        matTooltip="Girodo & Wood, 1979; Goodhart, 1986; Mahoney & Avener, 1977; Van Raalte et al., 1994; Weinberg, 1985. Journal of Personality and Social Psychology."
+                        matTooltipPosition="above">Studies show</span> that
+                        people like you are not only happier in their lives, but complete tasks more efficiently.
+                    </p>
+                </mat-card>
+
+                <mat-card class="curved outline shadow" style="margin: auto" *ngIf="avgPolarity >= 0.05 && avgPolarity <= 0.1">
+                    <h1>😊 Slightly positive</h1>
+                    <p>Your overall sentiments while delegating tasks for yourself are slightly positive. <span class="underline"
+                        matTooltip="Girodo & Wood, 1979; Goodhart, 1986; Mahoney & Avener, 1977; Van Raalte et al., 1994; Weinberg, 1985. Journal of Personality and Social Psychology."
+                        matTooltipPosition="above">Studies show</span> that
+                        people like you are not only happier in their lives, but complete tasks more efficiently.
+                    </p>
+                </mat-card>
+
+                <mat-card class="curved outline shadow" style="margin: auto" *ngIf="avgPolarity < 0.05 && avgPolarity > -0.05">
+                    <h1>😐 Decidedly neutral</h1>
+                    <p>Your overall sentiments while delegating tasks for yourself are decidedly neutral. <span class="underline"
+                        matTooltip="Kross, E., Bruehlman-Senecal, E., Park, J., Burson, A., Dougherty, A., Shablack, H., Bremner, R., Moser, J., & Ayduk, O. (2014). Self-talk as a regulatory mechanism: How you do it matters. Journal of Personality and Social Psychology."
+                        matTooltipPosition="above">Studies show</span> that this is a rather good trait
+                        to have, being fair and objective regardless of the situation.
+                    </p>
+                </mat-card>
+
+                <mat-card class="curved outline shadow" style="margin: auto" *ngIf="avgPolarity >= -0.1 && avgPolarity <= -0.05">
+                    <h1>😒 Slightly negative</h1>
+                    <p>Your overall sentiments while delegating tasks for yourself are typically negative. You may have found that you
+                        work better with a more authoritative approach, but be wary of the line between pushing yourself and setting
+                        unrealistic expectations.
+                    </p>
+                </mat-card>
+
+                <mat-card class="curved outline shadow" style="margin: auto" *ngIf="avgPolarity < -0.1">
+                    <h1>😠 Remarkably negative</h1>
+                    <p>Of all the sentiment categorizations, this category is typically the most confident in estimation - meaning
+                        you're quite likely to be extra unforgiving in your self-expectations. You're among the most successful entrepreneurs
+                        and innovators, but certain failures may feel immense.
+                    </p>
+                </mat-card>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="dark" expanded>
+                <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+                    <mat-panel-title class="alt-header">
+                        <p class="bold-heading">Trends</p>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-card class="curved outline shadow" style="margin: auto">
+                    <h2>Sentiments by Time of Day</h2>
+                    <div class="graph">
+                        <app-grouped-vertical [multi]="advancedPie"></app-grouped-vertical>
+                    </div>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card-content>
+</mat-card>

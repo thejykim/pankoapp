@@ -110,6 +110,12 @@ main {
   font-family: 'Lobster', cursive !important;
 }
 
+.underline {
+  border-bottom: 3px dashed #23d5ab;
+  text-decoration: none;
+  cursor: default;
+}
+
 mat-card.jumbotron {
   padding-top: 5rem;
   padding-bottom: 5rem;

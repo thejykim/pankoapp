@@ -15,7 +15,9 @@ The application uses Firestore for data storage. Data collected can be summarize
 ```
 boardsCreated (number)
 completedTimes (array of numbers)
-creationTimes (array of numbers)
+creationData (array of maps)
+ => date (number)
+ => mood (number)
 tasksCreated (number)
 tasksCompleted (number)
 ```

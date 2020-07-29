@@ -46,10 +46,9 @@ export class BoardComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (result.isNew) {
-          this.boardService.createTask(this.board.id, [
-            ...this.board.tasks,
-            result.task
-          ], result.task, result.task.isDone);
+          const newTasks = this.board.hasOwnProperty('tasks') ? [ ...this.board.tasks, result.task ] : [ result.task ];
+
+          this.boardService.createTask(this.board.id, newTasks, result.task, result.task.isDone);
         } else if (result.prevStatus !== result.task.isDone) {
           const update = this.board.tasks;
           update.splice(result.idx, 1, result.task);

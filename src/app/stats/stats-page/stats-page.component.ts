@@ -58,7 +58,7 @@ export class StatsPageComponent implements OnInit {
     return this.userStats.hasOwnProperty('tasksCreated')
     && this.userStats.hasOwnProperty('tasksCompleted')
     && this.userStats.hasOwnProperty('boardsCreated')
-    && this.userStats.hasOwnProperty('creationTimes')
+    && this.userStats.hasOwnProperty('creationData')
     && this.userStats.hasOwnProperty('completedTimes');
   }
 }

@@ -20,6 +20,9 @@ import { LineHabitsComponent } from './graphs/line-habits/line-habits.component'
 import { HabitsCardComponent } from './stats-page/habits-card/habits-card.component';
 import { BasicCardComponent } from './stats-page/basic-card/basic-card.component';
 import { StandardLineComponent } from './graphs/standard-line/standard-line.component';
+import { SentimentCardComponent } from './stats-page/sentiment-card/sentiment-card.component';
+import { AdvancedPieComponent } from './graphs/advanced-pie/advanced-pie.component';
+import { GroupedVerticalComponent } from './graphs/grouped-vertical/grouped-vertical.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { StandardLineComponent } from './graphs/standard-line/standard-line.comp
     LineHabitsComponent,
     HabitsCardComponent,
     BasicCardComponent,
-    StandardLineComponent
+    StandardLineComponent,
+    SentimentCardComponent,
+    AdvancedPieComponent,
+    GroupedVerticalComponent
   ],
   imports: [
     CommonModule,

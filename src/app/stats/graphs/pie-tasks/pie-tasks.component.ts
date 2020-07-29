@@ -25,7 +25,7 @@ export class PieTasksComponent {
   // pie
   showLabels = true;
   explodeSlices = false;
-  doughnut = false;
+  doughnut = true;
 
   constructor() {
     this.view = [parent.innerWidth * 0.25, parent.innerWidth * 0.25];

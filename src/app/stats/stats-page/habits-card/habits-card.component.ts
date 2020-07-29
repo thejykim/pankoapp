@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { UserStats } from '../../user-stats.model';
 
 @Component({
@@ -18,7 +17,7 @@ export class HabitsCardComponent implements OnInit {
   completionType: string;
   displayGraphType: string;
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.fillStats();
@@ -37,8 +36,8 @@ export class HabitsCardComponent implements OnInit {
     this.generateDataArray(this.perWeekStats, 'Tasks created', 'days');
     this.generateDataArray(this.perWeekStats, 'Tasks completed', 'days');
 
-    this.userStats.creationTimes.forEach(time => {
-      const date = new Date(time);
+    this.userStats.creationData.forEach(task => {
+      const date = new Date(task.date);
       this.perDayStats[0].series[date.getHours()].value++;
       this.perWeekStats[0].series[date.getDay()].value++;
     });
@@ -113,11 +112,11 @@ export class HabitsCardComponent implements OnInit {
 
     // categorize by day
     for (let i = 0; i < 24; i++) {
-      if (i < 3 || i > 20) {
+      if (i < 4 || i > 20) {
         // night
         createdPerSection[2] += this.perDayStats[0].series[i].value;
         completedPerSection[2] += this.perDayStats[1].series[i].value;
-      } else if (i > 3 && i < 13) {
+      } else if (i > 4 && i < 13) {
         // morning
         createdPerSection[0] += this.perDayStats[0].series[i].value;
         completedPerSection[0] += this.perDayStats[1].series[i].value;

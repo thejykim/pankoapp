@@ -12,6 +12,15 @@
         <div style="width: 60vw; min-height: 800px" *ngIf="hasStats && hasBasicProperties()">
             <mat-tab-group dynamicHeight mat-align-tabs="center">
                 <mat-tab label="📈 Basic">
+                    <mat-card class="info-card" *ngIf="!hasBasicProperties()">
+                        <mat-card-title>
+                            <h2>Not enough data yet.</h2>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <p>We haven't been able to gather enough data to make meaningful conclusions about you. Come back soon!</p>
+                        </mat-card-content>
+                    </mat-card>
+                    
                     <app-basic-card [userStats]="userStats" *ngIf="isLoaded && hasBasicProperties()"></app-basic-card>
                 </mat-tab>
 
@@ -45,14 +54,16 @@
                         </mat-chip-list>
                     </ng-template>
 
-                    <mat-card class="info-card curved" style="text-align: center;">
+                    <mat-card class="info-card" *ngIf="!hasBasicProperties()">
                         <mat-card-title>
-                            <h2>This feature isn't available yet.</h2>
+                            <h2>Not enough data yet.</h2>
                         </mat-card-title>
                         <mat-card-content>
-                            <p>Once it is, you'll be able to see your own tone and sentiment tendencies, as well as personalized feedback.</p>
+                            <p>We haven't been able to gather enough data to make meaningful conclusions about you. Come back soon!</p>
                         </mat-card-content>
                     </mat-card>
+
+                    <app-sentiment-card [userStats]="userStats" *ngIf="isLoaded && hasBasicProperties()"></app-sentiment-card>
                 </mat-tab>
             </mat-tab-group>
         </div>

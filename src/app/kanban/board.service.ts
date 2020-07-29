@@ -19,15 +19,13 @@ export class BoardService {
   async createBoard(data: Board) {
     const user = await this.afAuth.currentUser;
     const increment = firebase.firestore.FieldValue.increment(1);
-    const creationDate = firebase.firestore.FieldValue.arrayUnion(Date.now());
 
     return this.db.collection('boards').add({
       ...data,
-      uid: user.uid,
-      tasks: [{ description: 'Click to edit me!', label: 'yellow', isDone: false, completed: 0 }]
+      uid: user.uid
     }).then(doc =>
       this.db.collection('userStats').doc(user.uid).set(
-        {boardsCreated: increment, tasksCreated: increment, creationTimes: creationDate}, {merge: true}
+        {boardsCreated: increment}, {merge: true}
       )
     );
   }
@@ -43,12 +41,13 @@ export class BoardService {
     let polarity: number;
 
     results = await this.getPolarity(task.description);
-    polarity = results.result.polarity ? results.result.polarity : 0;
+    polarity = results.hasOwnProperty('result') ? results.result.polarity : 0;
+
+    const creationArray = { 'date': Date.now(), 'mood': polarity };
 
     const user = await this.afAuth.currentUser;
     const increment = firebase.firestore.FieldValue.increment(1);
-    const creationDate = firebase.firestore.FieldValue.arrayUnion(Date.now());
-    const newPolarity = firebase.firestore.FieldValue.arrayUnion(polarity);
+    const creationUnion = firebase.firestore.FieldValue.arrayUnion(creationArray);
 
     const db = firebase.firestore();
     const batch = db.batch();
@@ -72,10 +71,10 @@ export class BoardService {
     // update user stats
     const userRef = db.collection('userStats').doc(user.uid);
     if (!isCompleted) {
-      batch.set(userRef, {tasksCreated: increment, creationTimes: creationDate, polarities: newPolarity}, {merge: true});
+      batch.set(userRef, {tasksCreated: increment,  creationData: creationUnion}, {merge: true});
     } else {
       batch.set(userRef,
-        {tasksCreated: increment, tasksCompleted: increment, creationTimes: creationDate, completedTimes: updateDate, polarities: newPolarity}, {merge: true}
+        {tasksCreated: increment, tasksCompleted: increment,  creationData: creationUnion, completedTimes: updateDate}, {merge: true}
       );
     }
 

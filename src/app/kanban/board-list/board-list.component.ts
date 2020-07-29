@@ -14,6 +14,7 @@ import { BoardService } from '../board.service';
 export class BoardListComponent implements OnInit, OnDestroy {
   boards: Board[];
   sub: Subscription;
+  randomInt: number;
 
   constructor(public boardService: BoardService, public dialog: MatDialog) {}
 
@@ -23,6 +24,7 @@ export class BoardListComponent implements OnInit, OnDestroy {
       .subscribe((boards) => {
         this.boards = boards;
       });
+    this.randomInt = Math.random();
   }
 
   drop(event: CdkDragDrop<string[]>) {

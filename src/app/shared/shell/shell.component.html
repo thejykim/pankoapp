@@ -36,10 +36,10 @@
         <span class="fill-space"></span>
         
         <div *ngIf="!(isHandset$ | async)">
+          <a mat-button routerLink="/about">🧪 About</a>
           <a mat-button routerLink="/planner">📝 Planner</a>
           <a *ngIf="!(afAuth.authState | async)" mat-button routerLink="/login">🔑 Login</a>
           <a *ngIf="afAuth.authState | async" mat-button [matMenuTriggerFor]="menu">🧑 Profile</a>
-          <a mat-button routerLink="/about">🧪 About</a>
         </div>
         
         <mat-menu #menu="matMenu">

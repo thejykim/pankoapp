@@ -2,7 +2,8 @@
   <div class="tip">
     <mat-card class="curved" style="display: inline-flex">
       <mat-card-content style="display: inline-table">
-        <p><strong>Tip:</strong> Right click on tasks to mark them as complete.</p>
+        <p *ngIf="randomInt > 0.5"><strong>Tip:</strong> Right click on tasks to mark them as complete.</p>
+        <p *ngIf="randomInt < 0.5"><strong>Tip:</strong> Deleting boards or tasks does not delete the data used for calculating insights. Feel free to clean up unnecessary clutter!</p>
       </mat-card-content>
     </mat-card>
   </div>

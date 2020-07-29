@@ -2,7 +2,11 @@ export interface UserStats {
     boardsCreated: number;
     tasksCreated: number;
     tasksCompleted: number;
-    creationTimes: number[];
+    creationData: creationData[];
     completedTimes: number[];
-    sentiments: number[];
+}
+
+export interface creationData {
+    date: number;
+    mood: number;
 }
