@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const components = [ShellComponent];
 
@@ -35,6 +36,7 @@ const modules = [
   MatSnackBarModule,
   FormsModule,
   MatTooltipModule,
+  MatGridListModule,
 ];
 
 @NgModule({

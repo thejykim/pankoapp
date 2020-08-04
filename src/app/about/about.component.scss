@@ -7,6 +7,10 @@ mat-card {
     text-align: center;
 }
 
+mat-nav-list {
+    padding: 0 1rem;
+}
+
 mat-card.about {
     text-align: left;
 }
@@ -14,4 +18,8 @@ mat-card.about {
 .buttons {
     margin-top: 1rem;
     text-align: center;
+}
+
+.sub-text {
+    font-size: small !important;
 }

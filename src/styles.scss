@@ -111,7 +111,13 @@ main {
 }
 
 .underline {
-  border-bottom: 3px dashed #23d5ab;
+  border-bottom: 2px dashed #23d5ab;
+  text-decoration: none;
+  cursor: default;
+}
+
+.underline:hover {
+  border-bottom: 2px solid #23d5ab;
   text-decoration: none;
   cursor: default;
 }
