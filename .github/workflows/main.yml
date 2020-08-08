@@ -13,7 +13,7 @@ jobs:
         node-version: '12.x'
     - run: npm install
     - run: npm build --prod
-    - run: tree
+    - run: ls
     - uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting
