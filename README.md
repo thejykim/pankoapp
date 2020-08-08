@@ -1,10 +1,18 @@
-# Panko
+# PankoApp
 
-Your own productivity assistant, built with [Angular CLI](https://github.com/angular/angular-cli).
+Your own productivity assistant that makes recommendations on observed behaviors over time, based on research-backed claims. Built with an intuitively streamlined interface.
+
+PankoApp is designed to be 100% scalable and implements continuous integration with [GitHub Actions](https://github.com/thejykim/pankoapp/actions). The project's primary stack is:
+
+- Angular 6
+- Node.js
+- Google Cloud Storage
+
+Read the full list of libraries and APIs used [here](https://pankoapp.com/about).
 
 ## Getting started
 
-With Node.js and the latest version of Angular installed, clone this repository and run ```npm install``` to install the project's dependencies.
+With Node.js and the latest version of Angular installed, clone this repository and run `npm install` to install the project's dependencies.
 
 ## Data storage
 
