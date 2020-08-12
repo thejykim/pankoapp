@@ -8,7 +8,6 @@ import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BoardComponent } from './board/board.component';
 import { FormsModule } from '@angular/forms';
-import { BoardDialogComponent } from './dialogs/board-dialog.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TaskDialogComponent } from './dialogs/task-dialog.component';
 import { BoardListComponent } from './board-list/board-list.component';
@@ -20,7 +19,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   declarations: [
     BoardListComponent,
     BoardComponent,
-    BoardDialogComponent,
     TaskDialogComponent,
     DeleteButtonComponent,
     FocusInputDirective
@@ -36,6 +34,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonToggleModule,
     MatCheckboxModule
   ],
-  entryComponents: [BoardDialogComponent, TaskDialogComponent]
+  entryComponents: [TaskDialogComponent]
 })
 export class KanbanModule {}

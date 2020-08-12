@@ -1,6 +1,6 @@
 .boards {
   width: auto;
-  padding: 24px;
+  padding: 0 24px 24px;
   display: flex;
   flex-direction: row;
   flex-flow: row wrap;
@@ -30,6 +30,12 @@
 
 .tip {
   padding-left: 3rem;
+  padding-bottom: 2rem;
+}
+
+.new-board {
+  text-align: center;
+  align-content: center;
 }
 
 .cdk-drag-placeholder {

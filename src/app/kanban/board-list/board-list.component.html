@@ -7,17 +7,20 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div cdkDropList cdkDropListOrientation="horizontal" class="boards" (cdkDropListDropped)="drop($event)">
 
-    <div class="board-button">
-      <button mat-raised-button color="accent" cdkDragDisabled (click)="openBoardDialog()">
-        New Board
+  <div class="new-board">
+    <mat-form-field appearance="outline">
+      <mat-label>New board</mat-label>
+      <input matInput placeholder="What's up?" autocomplete="off" [(ngModel)]="boardTitle" cdkTextareaAutosize="false">
+      <button matSuffix mat-icon-button color="primary" (click)="createNewBoard()">
+        <mat-icon>send</mat-icon>
       </button>
-    </div>
-
+    </mat-form-field>
+  </div>
+  
+  <div cdkDropList cdkDropListOrientation="horizontal" class="boards" (cdkDropListDropped)="drop($event)">
     <app-board cdkDrag *ngFor="let board of boards" [board]="board" [boardTitle]="board.title">
       <mat-icon class="light" cdkDragHandle class="handle">drag_indicator</mat-icon>
     </app-board>
-    
   </div>
 </main>
