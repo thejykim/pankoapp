@@ -11,7 +11,7 @@
        
         <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
         <a *ngIf="!(afAuth.authState | async)" mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
-        <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Kanban</a>
+        <a mat-list-item routerLink="/planner" (click)="drawer.close()">Planner</a>
         <a *ngIf="afAuth.authState | async" mat-list-item routerLink="/stats" (click)="drawer.close()">My Insights</a>
         <a *ngIf="afAuth.authState | async" mat-list-item routerLink="/login" (click)="afAuth.signOut()">Logout</a>
         <a mat-list-item routerLink="/about" (click)="drawer.close()">About</a>
